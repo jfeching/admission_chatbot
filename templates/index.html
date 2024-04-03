@@ -96,39 +96,76 @@
     botResponse(msgText);
   });
 
-  abtUPCAT.addEventListener("click", event => {
-
-    event.preventDefault();
-    fetchTag("UPCAT")
-  });
-
-
-
-  /*abtSD.addEventListener("click", async event => {
-    try {
-      const tags = await fetchTag("SecondDegree");
-      const msgText = "About Second Degree";
+  abtUPCAT.addEventListener(
+    'click',
+    async () => {
+      await $.get("/getTag", { cat: "UPCAT" }).done(function (data) {
+        //console.log(rawText);
+        appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
+      });
       
-      appendButton(BOT_NAME, BOT_IMG, "left", msgText, tags);
-    } catch (error) {
-      console.error("Error fetching tags:", error);
-      // Handle error here
-    }
+    },
+    false
+);
+
+abtFS.addEventListener(
+  'click',
+  async () => {
+    await $.get("/getTag", { cat: "ForeignStudent" }).done(function (data) {
+      //console.log(rawText);
+      appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
+    });
     
-  });*/
+  },
+  false
+);
+
+abtND.addEventListener(
+  'click',
+  async () => {
+    await $.get("/getTag", { cat: "NonDegree" }).done(function (data) {
+      //console.log(rawText);
+      appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
+    });
+    
+  },
+  false
+);
+
+abtNFYA.addEventListener(
+  'click',
+  async () => {
+    await $.get("/getTag", { cat: "FirstYearAdmission" }).done(function (data) {
+      //console.log(rawText);
+      appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
+    });
+    
+  },
+  false
+);
 
   abtSD.addEventListener(
     'click',
     async () => {
       await $.get("/getTag", { cat: "SecondDegree" }).done(function (data) {
         //console.log(rawText);
-        appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)
-        
-  
+        appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
       });
       
     },
     false
+);
+
+abtSS.addEventListener(
+  'click',
+  async () => {
+    await $.get("/getTag", { cat: "SpecialStudent" }).done(function (data) {
+      //console.log(rawText);
+      appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
+    });
+    
+  },
+  false
 );
 
   function appendButton(name, img, side, text, tags) {
@@ -199,7 +236,6 @@
       //console.log(rawText);
       return data
       
-
     });
 
   }
