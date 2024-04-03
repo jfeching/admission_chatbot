@@ -1,0 +1,264 @@
+{
+    "intents": [
+        {
+            "tag": "greeting",
+            "patterns": [
+                "Hi",
+                "Hello",
+                "Good day",
+                "Hey there"
+            ],
+            "responses": [
+                "Hello! Welcome to the UP Admission Chatbot. How can I assist you today?",
+                "Hi there! How can I help you?",
+                "Good day! What questions do you have for me?"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "greetingMore",
+            "patterns": [
+                "How are you",
+                "Whats up"
+            ],
+            "responses": [
+                "I am fine!, How about you?",
+                "I am good, you?"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "cya",
+                "Bye",
+                "See you later",
+                "Goodbye",
+                "I am Leaving",
+                "Have a Good day"
+            ],
+            "responses": [
+                "Sad to see you go :(",
+                "Talk to you later",
+                "Goodbye!"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "infoUP",
+            "patterns": [
+                "What is the University of the Philippines?",
+                "What is UP"
+            ],
+            "responses": [
+                "The University of the Philippines (UP) is the national university of the Philippines. Originally founded as a single campus in Manila in June 18, 1908, it is now eight constituent universities and one autonomous college, spread across 17 campuses all over the country."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqForeignStudent",
+            "patterns": [
+                "What are the additional requirements for foreign students?",
+                "Requirements for foreign student",
+                "Reqs for foreign student"
+            ],
+            "responses": [
+                "In compliance with EO 285 series of 2000, please find below additional application requirements for submission to UPLB : | *Five (5) copies of the Student’s Personal History Statement (PHS) duly signed by him, both in English and in his national alphabet accompanied by his personal seal, if any, and containing among others, his left and right thumbprints and a 2x2 inch photograph on plain white background taken not more than six (6) months prior to submission; (Download PHS form). *A notarized affidavit of support including bank statements or notarized grant for institutional scholars to cover expenses for the student's accommodation and subsistence, as well as school dues and other incidental expenses; *Scholastic records duly authenticated by the Philippine Foreign Service Post located in the student applicant's country of origin or legal residence; *Photocopy of data page of the student's passport showing date and place of birth, and birth certificate or its equivalent duly authenticated by the Philippine Foreign Service Post"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqFirstYearAdmission",
+            "patterns": [
+                "What are the requirements for new first-year admissions?",
+                "requirements for new first-year admissions?",
+                "reqs for new first-year admissions?"
+            ],
+            "responses": [
+                "Here are the requirements for new first-year admissions: | (1) completion of the high school program in the country where s/he had secondary education (including the completion of a one- or two-year pre-university education in a country where such is a prerequisite for admission to a bachelor’s degree program); | (2) qualifying in a college-qualifying national or international foreign-administered examination such as the Scholastic Aptitude Test (SAT), OR General Certificate of Education (GCE) Examination, OR the International Baccalaureate (IB) Diploma. Minimum requirement are as follows: SAT: minimum total score of 1270 (620 in Math and 650 in Evidence-Based Writing and Critical Reading) GCE: 2 Ordinary (O) level passes and 3 Advanced (A) level passes IB:International Baccalaureate Diploma | (3) in the case of an applicant whose native language or whose medium of instruction in the secondary school is not English, a minimum score of 500 if paper-based, 173 if computer-based or 61 if IBT-based, in the Test of English as a Foreign Language (TOEFL)/5.5 in International English Language Testing System (IELTS)."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "infoFirstYearAdmission",
+            "patterns": [
+                "Who can apply for new first-year admissions?",
+                "Can I apply for new first-year admissions",
+                "Info on new first-year admissions"
+            ],
+            "responses": [
+                "A Filipino or foreign applicant who graduated from a high school abroad and has not enrolled in college may be admitted to the freshman class by automatic admission if s/he meets the requirements."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "InfoT1Applicant",
+            "patterns": [
+                "What are T1 apllicants?",
+                "Am I a T1 applicant",
+                "T1 applicant info"
+            ],
+            "responses": [
+                "T1 applicant are transfer applicants from other UP units."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "InfoT2Applicant",
+            "patterns": [
+                "What are T2 apllicants?",
+                "Am I a T2 applicant",
+                "T2 applicant info"
+            ],
+            "responses": [
+                "T2 applicants are transfer applicants from non-UP units or other universities."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqT1Applicant",
+            "patterns": [
+                "What are the minimum requirements for T1 applicants?",
+                "requirements for T1 applicants",
+                "reqs for t1 applicant"
+            ],
+            "responses": [
+                "Transfer applicants from other UP units should have earned a minimum of 30 academic units and with good academic standing in the last semester enrolled. For further information, you can ask directly to the college you are transferring to."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqT2Applicant",
+            "patterns": [
+                "What are the minimum requirements for T2 applicants?",
+                "requirements for T2 applicants",
+                "reqs for t2 applicant"
+            ],
+            "responses": [
+                "Transfer applicants from non-UP units should have earned a minimum of 33 academic units and general weighted average of 2.00 or better. For further information, you can ask directly to the college you are transferring to."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "coursesT2Applicants",
+            "patterns": [
+                "Are all degree programs open for T2 applicants?"
+            ],
+            "responses": [
+                "Due to limited facilities, degree programs closed to transfer applicants from non-UP units are as follows: | BS Accountancy (not yet offered to all transfer applicants) | BS Computer Science | BS Civil Engineering | BS Chemical Engineering | BS Electrical Engineering | BS Industrial Engineering | BS Materials Engineering | BS Mechanical Engineering | BS Biology (temporary suspension of transfer applications)"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqTransferApplicant",
+            "patterns": [
+                "What are the requirements for transfer applications?",
+                "reuirements for transferees",
+                "reqs fpr transferees",
+                "req for transfer applicants"
+            ],
+            "responses": [
+                "Transfer Application Requirements : | * Accomplished UPLB Form No. 3 ( Download Undergradaute Application Form ) https://our.uplb.edu.ph/wp-content/uploads/2023/04/Undergraduate-Application-Form-3-2023.pdf * True Copy of Grades with grades for all collegiate subjects enrolled signed by authorized school official (if e-signature is used, the document should bear dry seal of the school) * Affidavit of non-enrollment if there is a gap in enrollment during college * Accomplished Grade Sheet Template in Excel format ( Download Grade Sheet ) https://our.uplb.edu.ph/wp-content/uploads/2023/11/Grade-Sheet-Template-Second-Semester-2023-2024.xlsx * Additional requirements for non-Filipino applicants: * For an applicant whose native language or whose medium of instruction in the secondary school is not English, official result of examination with minimum score as follows: * TOEFL : 500 for paper-based ; 173 for computer-based ; 61 for internet-based * IELTS   : 5.5 Overall Band Score | | Application fee : US$20.00 for non-Filipinos"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "infoSecondDegree",
+            "patterns": [
+                "Who can apply for a Second Baccalaureate degree?",
+                "Who can apply for a second degree?",
+                "info on second degree"
+            ],
+            "responses": [
+                "A holder of a UP bachelor’s degree may earn another bachelor’s degree upon the successful completion of at least 36 additional units prescribed by a discipline, after the previous degree."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "GwaReqSecondDegree",
+            "patterns": [
+                "What is the required GWA for graduates of other schools for a second degree?",
+                "required GWA for graduates of other schools for a second degree"
+            ],
+            "responses": [
+                "Graduates of other schools must have a General Weighted Average of 2.00 or better to be considered for admission to pursue a second degree in the University."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "",
+            "patterns": [
+                "How do I apply for a second degree?",
+                "What are the application requirements for a second degree?"
+            ],
+            "responses": [
+                "Here are the application requirements for a second degree: | * Official Transcript of Records – original copy and photocopy * Accomplished UPLB Form No. 3 ( Undergraduate Admission Application ) * 2 Letters of Recommendation addressed to the Dean of the College from former or current professors; if employed, one of the letters may come from the employer. * Photocopy of Undergraduate Diploma * Application fee: Php100.00 for Filipinos/Php150.00 for DVM applicants | | * Additional requirements for non-Filipino applicants * For an applicant whose native language or whose medium of instruction in the secondary school is not English, official result of examination with minimum score as follows: * TOEFL : 500 for paper-based ; 173 for computer-based ; 61 for internet-based * IELTS   : 5.5 Overall Band Score | * Application fee : US$20.00 for non-Filipinos"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "whoNonDegree",
+            "patterns": [
+                "Who can apply for a non-degree program?",
+                "Can I apply for a non-degree program",
+                "non degree program eligibility"
+            ],
+            "responses": [
+                "Graduates of baccalaureate programs (with BS degree) can apply to the non-degree program of the University to earn additional units in undergraduate courses."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "infoNonDegree",
+            "patterns": [
+                "What is a non-degree student?"
+            ],
+            "responses": [
+                "A non-degree student does not follow any organized program of study and thus, is not a prospective candidate for graduation for any degree in the University. | S/He shall not be allowed to enroll for more than one semester, except by special permission of the Dean of the college concerned and the University Registrar. | A maximum number of 18 units can be enrolled. Enrollment in a course however, will depend on faculty prerogative and availability of slots/courses."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqNonDegree",
+            "patterns": [
+                "How do I apply to be a non-degree student?",
+                "What are the application requirements for non-degree stdents?"
+            ],
+            "responses": [
+                "The application requirements are as follows: | | * Fully accomplished UPLB Form No. 3 ( Undergraduate Application Form ) https://our.uplb.edu.ph/wp-content/uploads/2023/04/Undergraduate-Application-Form-3-2023.pdf * Original copy of Official Transcript of Records * Photocopy of Diploma * Application fee: Php100 .00 for Filipinos | *Additional requirements for non-Filipino applicants: * For an applicant whose native language or whose medium of instruction in the secondary school is not English, official result of examination with minimum score as follows: * TOEFL : 500 for paper-based ; 173 for computer-based ; 61 for internet-based * IELTS   : 5.5 Overall Band Score * Application fee :US$20.00 for non-Filipinos | | Complete requirements should be submitted to: | UPLB Office of the University Registrar | Admission Section | G/F CAS Annex I Building | University of the Philippines Los Baños | 4031 College, Los Baños, Laguna Philippines"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "infoSpecialStudent",
+            "patterns": [
+                "What is a special student?"
+            ],
+            "responses": [
+                "A special student may enroll for such subjects which in the opinion of the instructor and the Dean s/he has the necessary information and ability to pursue profitably. | S/He shall not be allowed to enroll for more than 9 units per semester or to register for more than two years, except by special permission of the Dean. Enrollment in a course however, will depend on faculty prerogative and availability of slots/courses. Subjects taken shall be non-credit although work may be reported at the end of each semester as “satisfactory“ (S) or “unsatisfactory” (U)."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqSpecialStudent",
+            "patterns": [
+                "How do I apply to be a special student?",
+                "What are the application requirements for special stdents?"
+            ],
+            "responses": [
+                "The application requirements are as follows: | | * Fully accomplished  Undergraduate Application Form (https://our.uplb.edu.ph/wp-content/uploads/2023/04/Undergraduate-Application-Form-3-2023.pdf) * Original copy of Official Transcript of Records * Photocopy of Diploma * Application fee: Php100 .00 for Filipinos | *Additional requirements for non-Filipino applicants: * For an applicant whose native language or whose medium of instruction in the secondary school is not English, official result of examination with minimum score as follows: * TOEFL : 500 for paper-based ; 173 for computer-based ; 61 for internet-based * IELTS   : 5.5 Overall Band Score * Application fee :US$20.00 for non-Filipinos | | Complete requirements should be submitted to: | UPLB Office of the University Registrar | Admission Section | G/F CAS Annex I Building | University of the Philippines Los Baños | 4031 College, Los Baños, Laguna Philippines"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "noResponse",
+            "patterns": [
+                ""
+            ],
+            "responses": [
+                "I apologize, I do not understand. If the question is about UPCAT you can either check their official website (https://upcat.up.edu.ph/) or send an email at upcollegeapplications.oadms@up.edu.ph. If the question is about admissions to UPLB you can check their website at our.uplb.edu.ph. Thank you for understanding."
+            ],
+            "context_set": ""
+        }
+    ]
+}

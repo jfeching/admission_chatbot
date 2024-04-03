@@ -1,0 +1,957 @@
+{
+    "intents": [
+        {
+            "tag": "greeting",
+            "patterns": [
+                "Hi",
+                "Hello",
+                "Good day",
+                "Hey there"
+            ],
+            "responses": [
+                "Hello! Welcome to the UP Admission Chatbot. How can I assist you today?",
+                "Hi there! How can I help you?",
+                "Good day! What questions do you have for me?"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "greetingMore",
+            "patterns": [
+                "How are you",
+                "Whats up"
+            ],
+            "responses": [
+                "I am fine!, How about you?",
+                "I am good, you?"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "cya",
+                "Bye",
+                "See you later",
+                "Goodbye",
+                "I am Leaving",
+                "Have a Good day"
+            ],
+            "responses": [
+                "Sad to see you go :(",
+                "Talk to you later",
+                "Goodbye!"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "acknowledgement",
+            "patterns": [
+                "i see",
+                "i understand",
+                "i appreciate it"
+            ],
+            "responses": [
+                "I'm glad I was able to help you. Feel free to ask more questions.",
+                "I hope I was helpful in your questions."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "replyToThanks",
+            "patterns": [
+                "thank you for the information",
+                "thank you",
+                "thank you for answering"
+            ],
+            "responses": [
+                "You are welcome. Feel free to ask questions anytime.",
+                "No problem. I'm glad I can help. Padayon."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "infoUPGEN",
+            "patterns": [
+                "What is the University of the Philippines?",
+                "What is UP"
+            ],
+            "responses": [
+                "The University of the Philippines (UP) is the national university of the Philippines. Originally founded as a single campus in Manila in June 18, 1908, it is now eight constituent universities and one autonomous college, spread across 17 campuses all over the country."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqForeignStudent",
+            "patterns": [
+                "What are the additional requirements for foreign students?",
+                "Requirements for foreign student",
+                "Reqs for foreign student"
+            ],
+            "responses": [
+                "In compliance with EO 285 series of 2000, please find below additional application requirements for submission to UPLB: | <ul> ** Five (5) copies of the Student’s Personal History Statement (PHS) duly signed by him, both in English and in his national alphabet accompanied by his personal seal, if any, and containing among others, his left and right thumbprints and a 2x2 inch photograph on plain white background taken not more than six (6) months prior to submission; (Download PHS form). *  ** A notarized affidavit of support including bank statements or notarized grant for institutional scholars to cover expenses for the student's accommodation and subsistence, as well as school dues and other incidental expenses; *  ** Scholastic records duly authenticated by the Philippine Foreign Service Post located in the student applicant's country of origin or legal residence; *  ** Photocopy of data page of the student's passport showing date and place of birth, and birth certificate or its equivalent duly authenticated by the Philippine Foreign Service Post </ul>"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqFirstYearAdmission",
+            "patterns": [
+                "What are the requirements for new first-year admissions?",
+                "requirements for new first-year admissions?",
+                "reqs for new first-year admissions?"
+            ],
+            "responses": [
+                "Here are the requirements for new first-year admissions: | (1) completion of the high school program in the country where s/he had secondary education (including the completion of a one- or two-year pre-university education in a country where such is a prerequisite for admission to a bachelor’s degree program); | (2) qualifying in a college-qualifying national or international foreign-administered examination such as the Scholastic Aptitude Test (SAT), OR General Certificate of Education (GCE) Examination, OR the International Baccalaureate (IB) Diploma. Minimum requirement are as follows: SAT: minimum total score of 1270 (620 in Math and 650 in Evidence-Based Writing and Critical Reading) GCE: 2 Ordinary (O) level passes and 3 Advanced (A) level passes IB:International Baccalaureate Diploma | (3) in the case of an applicant whose native language or whose medium of instruction in the secondary school is not English, a minimum score of 500 if paper-based, 173 if computer-based or 61 if IBT-based, in the Test of English as a Foreign Language (TOEFL)/5.5 in International English Language Testing System (IELTS)."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "infoFirstYearAdmission",
+            "patterns": [
+                "Who can apply for new first-year admissions?",
+                "Can I apply for new first-year admissions",
+                "Info on new first-year admissions"
+            ],
+            "responses": [
+                "A Filipino or foreign applicant who graduated from a high school abroad and has not enrolled in college may be admitted to the freshman class by automatic admission if s/he meets the requirements."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "InfoTransfer1Applicant",
+            "patterns": [
+                "What are T1 apllicants?",
+                "Am I a T1 applicant",
+                "T1 applicant info"
+            ],
+            "responses": [
+                "T1 applicant are transfer applicants from other UP units."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "InfoTransfer2Applicant",
+            "patterns": [
+                "What are T2 apllicants?",
+                "Am I a T2 applicant",
+                "T2 applicant info"
+            ],
+            "responses": [
+                "T2 applicants are transfer applicants from non-UP units or other universities."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqTransfer1Applicant",
+            "patterns": [
+                "What are the minimum requirements for T1 applicants?",
+                "requirements for T1 applicants",
+                "reqs for t1 applicant"
+            ],
+            "responses": [
+                "Transfer applicants from other UP units should have earned a minimum of 30 academic units and with good academic standing in the last semester enrolled. For further information, you can ask directly to the college you are transferring to."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqTransfer2Applicant",
+            "patterns": [
+                "What are the minimum requirements for T2 applicants?",
+                "requirements for T2 applicants",
+                "reqs for t2 applicant"
+            ],
+            "responses": [
+                "Transfer applicants from non-UP units should have earned a minimum of 33 academic units and general weighted average of 2.00 or better. For further information, you can ask directly to the college you are transferring to."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "coursesTransfer2Applicants",
+            "patterns": [
+                "Are all degree programs open for T2 applicants?"
+            ],
+            "responses": [
+                "Due to limited facilities, degree programs closed to transfer applicants from non-UP units are as follows: | BS Accountancy (not yet offered to all transfer applicants) | BS Computer Science | BS Civil Engineering | BS Chemical Engineering | BS Electrical Engineering | BS Industrial Engineering | BS Materials Engineering | BS Mechanical Engineering | BS Biology (temporary suspension of transfer applications)"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqTransferApplicant",
+            "patterns": [
+                "What are the requirements for transfer applications?",
+                "reuirements for transferees",
+                "reqs fpr transferees",
+                "req for transfer applicants"
+            ],
+            "responses": [
+                "Transfer Application Requirements : | <ul> ** Accomplished UPLB Form No. 3 ( Download Undergradaute Application Form ) https://our.uplb.edu.ph/wp-content/uploads/2023/04/Undergraduate-Application-Form-3-2023.pdf *  ** True Copy of Grades with grades for all collegiate subjects enrolled signed by authorized school official (if e-signature is used, the document should bear dry seal of the school) *  ** Affidavit of non-enrollment if there is a gap in enrollment during college *  ** Accomplished Grade Sheet Template in Excel format ( Download Grade Sheet ) https://our.uplb.edu.ph/wp-content/uploads/2023/11/Grade-Sheet-Template-Second-Semester-2023-2024.xlsx *  ** Additional requirements for non-Filipino applicants: *  For an applicant whose native language or whose medium of instruction in the secondary school is not English, official result of examination with minimum score as follows: | TOEFL : 500 for paper-based ; 173 for computer-based ; 61 for internet-based | IELTS   : 5.5 Overall Band Score </ul> | Application fee : US$20.00 for non-Filipinos"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "infoSecondDegree",
+            "patterns": [
+                "Who can apply for a Second Baccalaureate degree?",
+                "Who can apply for a second degree?",
+                "info on second degree"
+            ],
+            "responses": [
+                "A holder of a UP bachelor’s degree may earn another bachelor’s degree upon the successful completion of at least 36 additional units prescribed by a discipline, after the previous degree."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "GwaReqSecondDegree",
+            "patterns": [
+                "What is the required GWA for graduates of other schools for a second degree?",
+                "required GWA for graduates of other schools for a second degree"
+            ],
+            "responses": [
+                "Graduates of other schools must have a General Weighted Average of 2.00 or better to be considered for admission to pursue a second degree in the University."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqSecondDegree",
+            "patterns": [
+                "How do I apply for a second degree?",
+                "What are the application requirements for a second degree?"
+            ],
+            "responses": [
+                "Here are the application requirements for a second degree: <ul> ** Official Transcript of Records – original copy and photocopy *  ** Accomplished UPLB Form No. 3 ( Undergraduate Admission Application ) *  ** 2 Letters of Recommendation addressed to the Dean of the College from former or current professors; if employed, one of the letters may come from the employer. *  ** Photocopy of Undergraduate Diploma *  ** Application fee: Php100.00 for Filipinos/Php150.00 for DVM applicants |  *  ** Additional requirements for non-Filipino applicants: *  For an applicant whose native language or whose medium of instruction in the secondary school is not English, official result of examination with minimum score as follows: | TOEFL : 500 for paper-based ; 173 for computer-based ; 61 for internet-based | IELTS   : 5.5 Overall Band Score </ul> | Application fee : US$20.00 for non-Filipinos"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "whoNonDegree",
+            "patterns": [
+                "Who can apply for a non-degree program?",
+                "Can I apply for a non-degree program",
+                "Who can apply for a non degree program?",
+                "Can I apply for a non degree program",
+                "Who can apply for a nondegree program?",
+                "Can I apply for a nondegree program",
+                "non degree program eligibility",
+                "nondegree program eligibility"
+            ],
+            "responses": [
+                "Graduates of baccalaureate programs (with BS degree) can apply to the non-degree program of the University to earn additional units in undergraduate courses."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "infoNonDegree",
+            "patterns": [
+                "What is a non-degree student?",
+                "What is a non degree student?"
+            ],
+            "responses": [
+                "A non-degree student does not follow any organized program of study and thus, is not a prospective candidate for graduation for any degree in the University. | S/He shall not be allowed to enroll for more than one semester, except by special permission of the Dean of the college concerned and the University Registrar. | A maximum number of 18 units can be enrolled. Enrollment in a course however, will depend on faculty prerogative and availability of slots/courses."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqNonDegree",
+            "patterns": [
+                "How do I apply to be a non-degree student?",
+                "What are the application requirements for non-degree students?",
+                "How do I apply to be a non degree student?",
+                "What are the application requirements for non degree students?",
+                "How do I apply to be a nondegree student?",
+                "What are the application requirements for nondegree students?"
+            ],
+            "responses": [
+                "Here are the application requirements for a non-degree:  | <ul> ** Fully accomplished UPLB Form No. 3 ( Undergraduate Application Form ) https://our.uplb.edu.ph/wp-content/uploads/2023/04/Undergraduate-Application-Form-3-2023.pdf *  ** Original copy of Official Transcript of Records *  ** Photocopy of Diploma *  ** Application fee: Php100 .00 for Filipinos | ** Additional requirements for non-Filipino applicants: *  For an applicant whose native language or whose medium of instruction in the secondary school is not English, official result of examination with minimum score as follows: | TOEFL : 500 for paper-based ; 173 for computer-based ; 61 for internet-based | IELTS   : 5.5 Overall Band Score </ul> | Application fee : US$20.00 for non-Filipinos Application fee :US$20.00 for non-Filipinos |  Complete requirements should be submitted to: | UPLB Office of the University Registrar | Admission Section | G/F CAS Annex I Building | University of the Philippines Los Baños | 4031 College, Los Baños, Laguna Philippines"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "infoSpecialStudent",
+            "patterns": [
+                "What is a special student?"
+            ],
+            "responses": [
+                "A special student may enroll for such subjects which in the opinion of the instructor and the Dean s/he has the necessary information and ability to pursue profitably. | S/He shall not be allowed to enroll for more than 9 units per semester or to register for more than two years, except by special permission of the Dean. Enrollment in a course however, will depend on faculty prerogative and availability of slots/courses. Subjects taken shall be non-credit although work may be reported at the end of each semester as “satisfactory“ (S) or “unsatisfactory” (U)."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reqSpecialStudent",
+            "patterns": [
+                "How do I apply to be a special student?",
+                "What are the application requirements for special stdents?"
+            ],
+            "responses": [
+                "The application requirements for special students are as follows: <ul> ** Fully accomplished  Undergraduate Application Form (https://our.uplb.edu.ph/wp-content/uploads/2023/04/Undergraduate-Application-Form-3-2023.pdf) *  ** Original copy of Official Transcript of Records *  ** Photocopy of Diploma *  ** Application fee: Php100 .00 for Filipinos | ** Additional requirements for non-Filipino applicants: *  For an applicant whose native language or whose medium of instruction in the secondary school is not English, official result of examination with minimum score as follows: | TOEFL : 500 for paper-based ; 173 for computer-based ; 61 for internet-based | IELTS   : 5.5 Overall Band Score </ul> | Application fee : US$20.00 for non-Filipinos | Complete requirements should be submitted to: | UPLB Office of the University Registrar | Admission Section | G/F CAS Annex I Building | University of the Philippines Los Baños | 4031 College, Los Baños, Laguna Philippines"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "waysAdmissionGEN",
+            "patterns": [
+                "What are the ways of admission into the university?"
+            ],
+            "responses": [
+                "Admission into the university can be done through the UP College of Admission Test. The UPLB also offers admission for special student, non-degree students, transferees, new first-year student, and second degrees if the applicant meet the requirements."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "infoUPCAT",
+            "patterns": [
+                "What is UPCAT?",
+                "what do you know about upcat"
+            ],
+            "responses": [
+                "As the premier State University, the University of the Philippines offers a wide range of degree programs. Some degree programs are offered in only one campus (e.g., BS Nursing, BA Filipino) while others are offered in two or more campuses (e.g., B Fine Arts, BS Statistics). Most of these require qualification through the UP College Admission Test (UPCAT). To maintain its high standard of education and to maximize its limited resources, the University has had to limit slots for freshman admission to each campus and to its various degree programs. Should you decide to take the UP College Admission Test (UPCAT), you will be one among many thousands who aspire to enter the University of the Philippines. The UPCAT consists of 4 subtests: Language Proficiency (in English and Filipino), Reading Comprehension (in English and Filipino), Science, and Mathematics. Standardized UPCAT scores are combined with the composite of final grades in Grades 8 to 11 to determine the admission score (UPG). To implement the policy of democratization to make the U.P. studentry more representative of the nation's population, socio-economic and geographic considerations are factored in the selection of campus qualifiers."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "eligibilityUPCAT",
+            "patterns": [
+                "Am I eligible to apply for UPCAT?",
+                "Can i apply into up",
+                "Can i apply for upcat"
+            ],
+            "responses": [
+                "You are eligible to apply for first-year admission to UP through the UPCAT for SY 2025-2026 if: <ul> ** You are a senior high school student expecting to graduate in 2025 in time for the opening of SY 2025-2026, OR you are a senior high school graduate from 2024 or earlier provided you have not taken any college courses before the opening of SY 2025-2026; AND *  ** You have final grades in Grades 8 to 11 by end of SY 2023-2024; AND *  ** You have not completed your application in UPCA 2021, UPCA 2022 and UPCA 2023 nor taken the UPCAT before  </ul>"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "coverageUPCAT",
+            "patterns": [
+                "What are the subtests in UPCAT?",
+                "What is the coverage of UPCAT?"
+            ],
+            "responses": [
+                "The UPCAT consists of 4 subtests: Language Proficiency (in English and Filipino), Reading Comprehension (in English and Filipino), Science, and Mathematics. Standardized UPCAT scores are combined with the composite of final grades in Grades 8 to 11 to determine the admission score (UPG). To implement the policy of democratic access, UP also considers socioeconomic and geographic factors in its admission process. (https://upcat.up.edu.ph)"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "applyUPCAT",
+            "patterns": [
+                "How do I apply for UPCAT?"
+            ],
+            "responses": [
+                "All forms for UPCAT shall be submitted online (except for certain regional areas). Applicants shall electronically accomplish Form 1 (Personal Data Sheet) in March 2023 and Form 2B (High School Record) in September 2023, and upload their photo and electronic signature. Some questions in Form 1 will be used for research and have no bearing in the evaluation for admission. However, we encourage applicants to fill out information as completely as they can to enable the University to conduct better analyses of data. High Schools shall be requested to (i) log on to the School Profile link in March 2023 to accomplish Form 2A (High School Profile) to inform and/or update the university on the most recent school information relevant to the application, and (ii) submit to UP in September 2023 a certified copy of the applicant's Student Permanent Record/Form137/SF10, signed by the authorized school representative and enclosed in a sealed envelope with a wet signature of such representative on the flap."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "minReqUPCAT",
+            "patterns": [
+                "What are the minimum application requirements for UPCAT?"
+            ],
+            "responses": [
+                "Here are the minimum requirements for UPCAT: | <ul> ** Senior high school student expecting to graduate before SY 2025-2026 from a DepEd-accredited high school or an accredited secondary school abroad; OR * ** Graduate of a DepEd-accredited high school or accredited secondary school abroad; AND * ** Must have final grades for Grade 8, 9, 10 and Grade 11; * ** Must not have taken any college subject/s prior to the opening of SY 2025-2026; * ** Must not have taken the UP College Admission Test in the AY 2020-2021 intake or earlier; AND * ** Must not have applied and completed the UP College Application for the AY 2021-2022 (UPCA 2021), AY 2022-2023 (UPCA 2022), or the AY 2023-2024 (UPCA 2023) intake. </ul>"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "startUPCAT",
+            "patterns": [
+                "When is the start of online application period?"
+            ],
+            "responses": [
+                "The online applications for UPCAT 2025 starts on April 15, 2024."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "deadlineUPCAT",
+            "patterns": [
+                "What is the deadline for filing of applications?"
+            ],
+            "responses": [
+                "There are currently no deadline for applications. You may visit https://upcat.up.edu.ph regularly for announcements and updates"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "docsUPCAT",
+            "patterns": [
+                "Whar are the required documents ro apply for UPCAT?"
+            ],
+            "responses": [
+                "Please be mindful of the following steps in filing your application. Upon completing Form 1 in the Online Portal and clicking on 'Submit Form 1', a request will be sent to your high school to verify your enrollment. After SY 2022-2023, when all final grades in Grades 8 to 11 are available, your school will be requested to provide you with a copy of your school record either in digital or hardcopy. You are encouraged to follow up this request to expedite your application. Upon receipt, use this document as reference in filling out Form 2B in the same portal. A certified true copy of your grades placed inside a sealed envelope authenticated with a wet signature of an authorized school official on the flap should also be provided to UP by your high school. |  | For all applicants, these fully accomplished forms are required: <ul> ** Form 1 Personal Data Sheet (filled out by the applicant in March-April 2023) * ** Form 2A (filled out by high school in March-April 2023) * ** Form 2B High School Record (filled out by applicant in September 2023 provided the applicant took the UPCAT) ** A certified true copy of the Permanent Secondary School Record (F137/SF10) signed in wet signature of the authorized school personnel (sealed in an envelope with wet signature on the flap) should be submitted to the UP Office of Admissions. * </ul> IF High school graduate, you need your High school diploma | IF Graduating in 2024 from a local HS, you need the DepEd Certificate of Recognition or Permit to Operate(to be submitted by the high school) | ONLY IF Transferee (i.e. has taken subjects from another high school), you need the Certified clear photocopy of the Permanent Secondary School Record (F137/SF10) from other school with all the grades earned therein | For Foreign Applicants Only, the proof of payment of application processing fee is required"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "stepsAppUPCAT",
+            "patterns": [
+                "What are the steps in applying for UPCAT?"
+            ],
+            "responses": [
+                "Here are the steps for application: | Step 1. Fill out application Form 1. Online application opens by March 8, 2023. (Manual application will only be available in selected regional areas.) | Step 2. For schools with an existing valid email address in our database, the Online portal shall automatically forward a request to your high school principal/school head to fill out Form 2A (High School Profile). | Step 3. FOR NON-FILIPINO APPLICANTS ONLY: Pay the Application fee. | Step 4. Claim your Test Permit. You will be notified by email if your Test Permit is already available. Due to the expected large volume of applicants, test permits will be distributed in a scheduled basis in May 2023. | Step 5. Take the UP College Admission Test (UPCAT) scheduled on June 3-4, 2023. | Step 6. Fill out Form 2B in September 2023. | Step 7. Check if the completed Forms 1 and 2B are uploaded in the Online Portal.   |  | Visit the https://upcat.up.edu.ph/htmls/aboutupcat.html#choice for more details on the steps."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "onlineAppUPCAT",
+            "patterns": [
+                "Where do I fill out the online application form?"
+            ],
+            "responses": [
+                "For ONLINE application: Go to https://upcat2024online.up.edu.ph. | You will need a valid email address for logging on to your application account and for receiving notifications about your application status and results. We encourage use of a personal email address (not school-related email address) to facilitate application. Please make sure that you correctly encode your full name and date of birth as shown in your birth certificate, and your school name. If your school is not in the choices provided, please send an email to upcollegeapplications.oadms@up.edu.ph. | We strongly encourage the use of secured e-mail accounts preferably with two-step verification to better protect your right to data privacy. | Do not create multiple accounts as these will cause much delay in accessing your application forms. You are required to read the UP Privacy Notice for Applicants for First Year Admissions Academic Year 2024-2025 before creating your account and filling out Form 1. Make sure you have a stable internet connection. Fill out Form 1 completely and accurately. DO NOT FORGET YOUR EMAIL ADDRESS AND PASSWORD!!!!"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "appFeeUPCAT",
+            "patterns": [
+                "Do I need to pay an application fee for UPCAT?"
+            ],
+            "responses": [
+                "There is no application fee for FIlipino applicants. However, for non-FIlipino applicants there is a non-refundable application fee. Specifically, P450 for resident foreign applicants studying in the Philippines US$50 for non-resident foreign applicants"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "locClaimPermitUPCAT",
+            "patterns": [
+                "Where do I claim the test permit?"
+            ],
+            "responses": [
+                "Upon filing your UPCAT application, you will be asked to indicate how to claim your test permit. Please choose from the following options: <ul> ** in person at the Office of Admissions * ** through an authorized representative who will be required to present and provide a copy of her or his government issued ID, letter of authorization from you and your school ID or any valid government issued ID card and a copy thereof * ** return courier pouch you will provide * ** at the Regional Test Center a day before your examination schedule * </ul>"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "whereUPCAT",
+            "patterns": [
+                "Where do I take the UPCAT?",
+                "Where will I take the UPCAT?"
+            ],
+            "responses": [
+                "Go to your designated Test Center on the date specified in your Test Permit: August 10 or 11, 2024. Be there by 6:30am (morning session) or 12nn (afternoon session)."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "schedUPCAT",
+            "patterns": [
+                "What is the schedule of UPCAT?"
+            ],
+            "responses": [
+                "Applicants will take the exam on August 10 and 11, 2024. Visit https://upcat.up.edu.ph regularly for announcements and updates regarding your application for admission."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "resultUPCAT",
+            "patterns": [
+                "How do I see the application results?",
+                "Where can I see the UPCAT results"
+            ],
+            "responses": [
+                "Check the UP website https://upcat.up.edu.ph for announcements on the application results. You will need the same email account that you used for application to view your application results. If you qualify for admission to UP, register according to the instructions provided by the college or unit to which you have been accepted"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "campusInfoGEN",
+            "patterns": [
+                "How many campuses are there?"
+            ],
+            "responses": [
+                "The UP is a vast System of 8 Constituent Universities located in 17 campuses, and UP students are from all regions of the country. They stand shoulder to shoulder to create a community of varied ideas, experiences and cultures. This is Tatak UP – a celebration of both diversity and unity."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "afterPermitUPCAT",
+            "patterns": [
+                "What do I need to do after claiming my test permit?"
+            ],
+            "responses": [
+                "Here are some useful reminders: | Check your Test Permit | Review the parts of your Test Permit.  | - Take note of the indicated Test Center (Place) and schedule (Date and Time). | - Make sure your name is complete and correct. | - Check if there is an embossed UP seal and initials of an issuing officer.  | Take care of your Test Permit | Please DO NOT do the following to your Test Permit: | soil, crumple, fold, staple, write, reproduce, share, lose"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "altClaimPermitUPCAT",
+            "patterns": [
+                "What if I cannot claim the test permit personally?"
+            ],
+            "responses": [
+                "Please bring the printed copy of the email and your school ID. For Authorized Representatives who will claim, see instructions indicated in the email. "
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "claimPermitUPCAT",
+            "patterns": [
+                "How do I claim my test permit?"
+            ],
+            "responses": [
+                "All applicants who chose 'in person' or 'thru Authorized Representative' as test permit claiming mode in Form 1, please make sure to claim it at the UP Office of Admissions (located inside UP Diliman, QC) on your scheduled date. For applicants in the provinces, you may claim your test permit from the Regional Examiner in your area "
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "arrivalTestCenterUPCAT",
+            "patterns": [
+                "What time should I arrive in the test center on the day of the exam?"
+            ],
+            "responses": [
+                "Reminders: | 1. Familiarize yourself with the testing center before the exam date. | 2. Be there at least 30 minutes before the start time.  | 3. Bring the things you'll need, especially your test permit. This will be presented and submitted to the testing personnel before and during the exam, respectively. | 4. Dress comfortably and appropriately. Different testing rooms may have different temperatures and ventilation. Be prepared for cold and warm conditions."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "thingsToBringUPCAT",
+            "patterns": [
+                "What do I need to bring on the day of the exam?"
+            ],
+            "responses": [
+                "Please bring the following on your exam day: <ul> ** Test Permit (original hard copy) * ** Current School ID or government-issued ID * ** Sharpened good-quality pencils * ** Eraser * ** Snacks and Water * ** Face mask and sanitizer * ** Jacket (optional) * </ul>"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "clothesUPCAT",
+            "patterns": [
+                "What should I wear for the exam?"
+            ],
+            "responses": [
+                "You can wear something comfortable so you can focus and give your best at the exam. A friendly reminder that some test centers are cold, so you can opt to bring aa jacket to keep you warm."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "missingPermitUPCAT",
+            "patterns": [
+                "What to do if I lost my test permit?"
+            ],
+            "responses": [
+                "In case your test permit is missing, you can try to go to the testing center a day before your scheduled exam to inform the staff. Once it is confirmed that you are scheduled to take the exam, they can tell you to arrive on the test center on the day of the exam earlier for an issuance of a new test permit. To be sure, you can contact the office of admissions and ask them for instructions."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "tipsUPCAT",
+            "patterns": [
+                "Any tips for the UPCAT exam?"
+            ],
+            "responses": [
+                "Rest the night before and do not study all night to avoid losing focus at the exam",
+                "Review your lessons during junior high school.",
+                "Manage your time well during the exam",
+                "Pray",
+                "Understand each problem well. Read effectively, look for key words.",
+                "Don't waste time on one question. Move to the next as soon as doubt clouds your thinking.",
+                "Don't stress yourself too much about it. Relax. Good Luck."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "access2BPortalUPCAT",
+            "patterns": [
+                "Who can access the form 2B portal"
+            ],
+            "responses": [
+                "Do this once you receive a copy of your High School Records and your final grades in Grades 8 to 11 are complete. Go to https://upcat2024online.up.edu.ph. You will need the email address and password you used for signing up in the application portal to log on to your application account. | You are required to read the UP Privacy Notice for Applicants for First Year Admissions Academic Year 2024-2025 before filling out Form 2B. | Make sure you have a stable internet connection. | Fill out Form 2B completely and accurately. | APPLICATION WILL NOT BE PROCESSED AND NO ADMISSION SCORE WILL BE COMPUTED FOR UPCAT-TAKERS WHO DID NOT FILL OUT FORM 2B."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "waitlistedUPCAT",
+            "patterns": [
+                "What happens if I am waitlisted"
+            ],
+            "responses": [
+                "Once you are waitlisted on a course, you will have a slot based on the availability."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "notConfirmingSlotUPCAT",
+            "patterns": [
+                "What happens if I was not able to confirm my slot?"
+            ],
+            "responses": [
+                "Failure to confirm your slot within the specified period of confirmation will mean forfeited slot and forfeited slot will be given to DPWAS qualifiers."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "infoDPWASUPCAT",
+            "patterns": [
+                "What is DPWAS",
+                "What does DPWAS mean"
+            ],
+            "responses": [
+                "When the letters 'DPWAS' (instead of a specific course) is written beside the campus into which a qualifier has been accepted, it means that they did not make it to the cut-offs of the courses they have chosen for the campus and will be asked to choose from other Degree Programs with Available Slots offered in the campus.",
+                "DPWAS means 'Degree Program with Available Slot'. It basically means that your UPG is within the cutoff of your desired campus but unfortunately not on your preferred program. Hence, you get to choose programs that have available slots but there is no guarantee yet since these slots will be open for all DPWAS  qualifiers."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "insUPCAT",
+            "patterns": [
+                "Instructions on taking the UPCAT"
+            ],
+            "responses": [
+                "Go to your designated Test Center on the date specified in your Test Permit. Be there by 6:30am for the morning session or by 12nn for the afternoon session. | Bring only your Test Permit, School ID or any valid government issued ID card, 2 good quality pencils, sharpener, rubber eraser and snacks. The test administration will last about five hours. The use of mobile phones, calculating devices, and/or cameras during the test is strictly prohibited."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "snacksUPCAT",
+            "patterns": [
+                "Can I bring snacks?"
+            ],
+            "responses": [
+                "Yes. The examination takes about five hours with no breaks which may make you hungry. Remember: do not bring snacks with a strong odor and are noisy to unwrap to avoid distracting other examinees. "
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "scoreUPCAT",
+            "patterns": [
+                "What score do I need to pass?"
+            ],
+            "responses": [
+                "The University Predicted Grade (UPG) does not only take into consideration your score in the examination. A percentage of your UPG constitutes your final grades in Grades 8 to 11. While it is important to do well in the actual test, keep in mind that your past academic performance also has a say in your possible admission to UP. Also, each UP campus and its courses have its own cut-off. UP will first look if you pass your first choice of campus. If yes, they will check if you pass the cut-off for the courses you chose. If you didn’t pass your first choice of campus, you will be checked for your second choice and the courses you put under it."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "notPassingUPCAT",
+            "patterns": [
+                "What happens if I don’t pass the exam?"
+            ],
+            "responses": [
+                "There are some steps you may take if you don’t pass UPCAT. First, you can try to appeal for reconsideration. To do this, check your UPG (which is only visible to those who didn’t pass) and see if it is within the cut-off UPG required of each UP campus. Again, each of them has different required cut-off grades. Some of the campuses and courses don’t accept appeals, and some require additional requirements such as interviews. If you couldn’t pass the appeal, try to transfer schools after a semester or a year."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "contactOfficeOfAdmissionsGEN",
+            "patterns": [
+                "How do I contact the office of admissions"
+            ],
+            "responses": [
+                "Here are the contact information of the Office of Admissions: | UP OFFICE OF ADMISSIONS | Telefax: +63 2 89274561 | Telephone: +63 2 8981-8500 | loc. 3827/3828/3830/3831 | Email: upcollegeapplications.oadms@up.edu.ph | Website: https://upcat.up.edu.ph | Address: Kalaw cor. Quirino Ave., UP Diliman, Quezon City 1101 Philippines |"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "wrongIDUploadUPCAT",
+            "patterns": [
+                "What is I uploaded an incorrect ID photo in the Form 1 portal"
+            ],
+            "responses": [
+                "For all applicants with an *incorrect ID photo uploaded in the Form 1 portal, please bring two (2) pieces of 2 x 2 ID picture with nametag (signature over printed name) on the day of your exam. | *blurred, pixelated, poor contrast, obstructed face, dark background, and/or does not resemble current appearance"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "passedUPCAT",
+            "patterns": [
+                "When will i know if I passed upcat",
+                "When will we know the results of the UPCAT?"
+            ],
+            "responses": [
+                "There will be an announcement on the website or their official Facebook account on the dates of the release of results.",
+                "Normally, the UPCAT Results will be released in the year of the batch, target is by April, BUT may be extended (or reduced) depending on the volume of applicants."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "remindersUPCAT",
+            "patterns": [
+                "What reminders do you have when taking UPCAT"
+            ],
+            "responses": [
+                "Here are some reminders you can keep in mind: | Bring only your Test Permit, School ID or any valid government issued ID card, 2 good quality pencils, sharpener, rubber eraser and snacks. | The test administration will last about five hours. | The use of cellphones, calculating devices, and/or cameras during the test is strictly prohibited. | Applicants are strongly encouraged to observe minimum public health standards at all times. | If you are a member of an Indigenous People's Group, please obtain an official certification (i.e., National Commission on Indigenous Peoples, National Commission on Muslim Filipinos) and submit when you take the UPCAT during your assigned test date to your proctor. | APPLICATION WILL NOT BE PROCESSED AND NO ADMISSION SCORE WILL BE COMPUTED FOR APPLICANTS WHO DID NOT TAKE THE TEST."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "reconUPCAT",
+            "patterns": [
+                "How to file an appeal for reconsideration?"
+            ],
+            "responses": [
+                "From the UPCAT website: The minimum UPG for appeals in a UP campus unit does not guarantee admission into a degree program because of the limited number of unfilled slots and additional requirements and/or conditions for appeals that are imposed by the different academic programs in each campus."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "minGradeReq",
+            "patterns": [
+                "Is there a minimum grade requirement for applying into UP"
+            ],
+            "responses": [
+                "There is NO minimum grade requirement for an examinee to be able to take the UPCAT as long as they have grades for the specified 3 and a half years of High School. These grades are necessary for computing admission scores ued to decide whenever an applicant will get accepted into the University."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "topTenReq",
+            "patterns": [
+                "Do I have to be in the Top Ten to be able to apply into UP"
+            ],
+            "responses": [
+                "No. All applicants who meet the requirements may apply for admission into the University, regardless of rank in their batch."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "gtSixYearsHSUPCAT",
+            "patterns": [
+                "Can students who spent more than 6 years in Junior and Senior High School apply into UP?"
+            ],
+            "responses": [
+                "YES. Students who spent more than 6 years in High School may apply. They are required to submit all the grades for Grades 8, 9, 10 and their first semester of Grade 11 in the K-12 curriculum (or their equivalent) with their application."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "irregSchoolUPCAT",
+            "patterns": [
+                "Can someone who did not graduate in a regular school apply into UP (PEPT, ALS)?"
+            ],
+            "responses": [
+                "Applicants who did not graduate in regular schools can apply online as long as they have complete grades for 8th, 9th, 10th, and 11th years of high school (or their equivalent in the old curriculum) and are eligible for college."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "prevGraduatesUPCAT",
+            "patterns": [
+                "Can someone who has already graduated from high school in the previous years still apply into UP?"
+            ],
+            "responses": [
+                "YES, as long as they have not been enrolled in college at all since graduating, and as long as they have NOT taken the UPCAT before."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "retakeUPCAT",
+            "patterns": [
+                "Can somene who has taken the UPCAT before re-apply for this UPCAT cycle?"
+            ],
+            "responses": [
+                "NO. Among the conditions for applying for UP admissions for FIRST YEAR College is that applicants must NOT HAVE TAKEN THE UPCAT/UPCA before."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "collegeStudentUPCAT",
+            "patterns": [
+                "Can someone who is studying in another college but wants to study in UP apply through this UP College Admission cycle?"
+            ],
+            "responses": [
+                "NO. Those who have already taken some subjects in another college or university but still want to study in UP should consider applying for transfer. Information on transfer can be obtained from the Registrar's Offices of the specific UP units."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "curriculaForm2",
+            "patterns": [
+                "What Curricula should be indicated in Form 2 (for High Schools)?"
+            ],
+            "responses": [
+                "ALL curricula offered in the school should be indicated in the first part of Form 2 that asks for information about the HIgh School. In the second part of the Form 2, where the Applicant's grades are tabulated, only the specific curriculum of the particular student should be indicated."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "changeAnsForm1",
+            "patterns": [
+                "Can we still change our answers in Form 1 once we have submitted our application online?"
+            ],
+            "responses": [
+                "You can log-in several times to the SAME ACCOUNT to accomplish your application (need not finish in one day, as long as you are done by the deadline). Please AVOID MAKING DUPLICATE ACCOUNTS. Once you have submitted your complete application, you can no longer edit. PLEASE READ INSTRUCTIONS CAREFULLY as you fill out your information online."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "gradesForm2",
+            "patterns": [
+                "What grades should be included in the computation of the GWA in Form 2?"
+            ],
+            "responses": [
+                "Only ACADEMIC subjects should be included in the GWA Specialized courses that are academic in nature (Calculus, Creatice Writing, Research) should be included. Non-academic subjects (Religion, Values, Dressmaking) should not be included in the computation"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "schoolFillForm2",
+            "patterns": [
+                "Can a school work on its students' Form 2 even before they finish filling out their application online?"
+            ],
+            "responses": [
+                "Once you have successfully logged-in and completed UP Form1, the UP Admissions ONline System will email your school (current) and ask them to submit your grades online. The UP Admission Online system has protocols for following up deficiencies via email."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "fileAppFormPerson",
+            "patterns": [
+                "Does the examinee have to file the Application Form in person?"
+            ],
+            "responses": [
+                "NO. All applications and other requirements will be submitted ONLINE except for the hardcopies that can be sent thru courier or dropped off on the office."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "fileAppFormWeekend",
+            "patterns": [
+                "Can we file our Application over the weekend?"
+            ],
+            "responses": [
+                "YES, BUT please note that other Online Sspport will only be available on weekdays and work hours."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "additionalReqUPCAT",
+            "patterns": [
+                "Can I submit additional requirements at a later time?"
+            ],
+            "responses": [
+                "The minimum requirements are enough for an application to be processed. Additional requirements may be requested by the Office of Admissions for specific cases. These requirements maybe submitted at a later time, but applicants should be reminded that if these documents are nnot submitted in time for processing of results, no results will be computed for them."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "passIntoUP",
+            "patterns": [
+                "How do I pass into UP?"
+            ],
+            "responses": [
+                "Once all requirements are complete, your application will be processed and you will be ranked among all the other participants using your grades submitted as well as in the UPCAT. Top ranking applicants per campus and degree program will be informed if they qualify or need to submit other requirements depending on the program they apply to."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "campusQualifiersSelection",
+            "patterns": [
+                "How are campus qualifiers selected?"
+            ],
+            "responses": [
+                "Top-ranking applicants for each campus are selected based on the number of slots available for each campus. If you qualify for your first choice, you will no longer be considered for your second choice. But if you do noy qualify for your first choice, you are automatically considered for your second choice of campus"
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "cutoffScoresCampus",
+            "patterns": [
+                "What are the cut-off scores of each UP campus?"
+            ],
+            "responses": [
+                "Cut-off scores vary from year to year. As determined by how the examinees perform, applicants for each campus with the highest scores are accepted for the available slots and their specific scores determine the cut-off. However, University policy has set an absolute UPG cut-off of 2.8 across all UP units."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "quotaCoursesUP",
+            "patterns": [
+                "What are the quota and non-quota courses in UP?"
+            ],
+            "responses": [
+                "Technically, this distinction no longer exists, because in reality all courses have a quota or limited number of slots. It just so happens that sometimes some courses don't get their slots filled because qualifiers compete for other courses. In effect, the applicants determine which courses are more difficult to get into because more people are vying for their limited slots. This changes with time."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "qualifiersCourses",
+            "patterns": [
+                "How do qualifiers get selected for specific courses?"
+            ],
+            "responses": [
+                ""
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "knowCourseQualifiedInto",
+            "patterns": [
+                "How do we know what course we have qualified into?"
+            ],
+            "responses": [
+                "Succesfull UPCAT applicants can view what course they have been qualified or waitlisted into via their UP College Admission Online account."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "listOfQualifiers",
+            "patterns": [
+                "Where can we find the list of qualifiers?"
+            ],
+            "responses": [
+                "Successful UPCAT apllicants will be notified by email about the campus and degree program that they are shortlisted into. Different degree programs may ask for additional requirements. Shortlisted applicants will be evaluated by the specific units that ask for additional requirements. Applicants who qualify into degree programs will be asked to confirm via the UP College Online confirmation system in order to secure their slots. | Non-successful applicants will be notified by email as well and can log on to their UP College Admission Online accounts to view their exam performance, which they may then use to appeal into the different UP units that allow appeals."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "pendingInfo",
+            "patterns": [
+                "What does PENDING mean?"
+            ],
+            "responses": [
+                "This means that your applications was lacking some important documents and no result could be computed for you. You will be asked to submit these documents in order to dermine how you did in the UPCAT. "
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "otherOptionsToUP",
+            "patterns": [
+                "What else can I do if I do not qualify for UPCAT but still want to study in UP?"
+            ],
+            "responses": [
+                "IF your name is not included in the List of UPCAT Qualifiers, you can try to appeal to other campuses. Each UP units sets its own criteria for appeals which you may inquire about form their campus website or from their respective Registrar's Offices. Please note that some UP units (i.e. LB, Baguio) require contracts that require students to finish in the campus (CANNOT TRANSFER) for freshmen admitted thru the appeals process. UP Diliman does not entertain appeals. | You may also enroll in another college or university for 1 year and earn at least 33 academic units with an average of 2.0 or better on the UP marking system. You can then apply for transfer into a UP campus through their respective Registrar's OFffices. Each UP campus has its own rules and criteria for accepting transfer students."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "incompleteStmtCatcher",
+            "patterns": [
+                "how do i",
+                "what is",
+                "is there",
+                "is there a",
+                "How to",
+                "can i",
+                "can you",
+                "what are",
+                "can we",
+                "do i have",
+                "who can",
+                "are the",
+                "when will",
+                "what happens",
+                "what if",
+                "how many",
+                "where do",
+                "do i",
+                "am i"
+            ],
+            "responses": [
+                "I apologize, there seems to be a mistake in your statement. It looks like it is incomplete. You can try to send another question.",
+                "I cannot process your input as it is lacking some informaion, can you provide more details.",
+                "I am very sorry. We were unable to prepare an answer for your question. We may be able to answer your inquiry if you use a different expression."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "noResponse",
+            "patterns": [
+                ""
+            ],
+            "responses": [
+                "I apologize, I do not understand. If the question is about UPCAT you can either check their official website (https://upcat.up.edu.ph/) or send an email at upcollegeapplications.oadms@up.edu.ph. | If the question is about admissions to UPLB you can check their website at our.uplb.edu.ph. Thank you for understanding.",
+                "I am very sorry. We were unable to prepare an answer for your question. We may be able to answer your inquiry if you use a different expression."
+            ],
+            "context_set": ""
+        }
+    ]
+}
