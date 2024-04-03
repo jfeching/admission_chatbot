@@ -8,8 +8,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
@@ -19,7 +17,10 @@
       <span class="wc-header__title">Admission Chatbot</span>
       </span>
     </div>
+    <button class="wc-menu__content-btn" id="gen-info"><!----><span>General Information</span></button>
     <button class="wc-menu__content-btn" id="abt-upcat"><!----><span>About UPCAT</span></button>
+    <button class="wc-menu__content-btn" id="abt-post-upcat"><!----><span>About Post-UPCAT</span></button>
+    <button class="wc-menu__content-btn" id="abt-transfer"><!----><span>About Transferee</span></button>
     <button class="wc-menu__content-btn" id="abt-nd"><!----><span>About Non-degree Programs</span></button>
     <button class="wc-menu__content-btn" id="abt-sd"><!----><span>About Second Baccalaureate Degrees</span></button>
     <button class="wc-menu__content-btn" id="abt-fs"><!----><span>About Foreign Students</span></button>
@@ -31,7 +32,7 @@
     <section class="msger">
         <header class="msger-header">
           <div class="msger-header-title">
-            <i class="fas fa-bug"></i> Chatbot <i class="fas fa-bug"></i>
+            <i class="fas fa-robot" style="color: #7b1113;"></i> Chatbot <i class="fas fa-robot" style="color: #7b1113;"></i>
           </div>
         </header>
     
@@ -55,7 +56,10 @@
     
         <form class="msger-inputarea">
           <input type="text" class="msger-input" id="textInput" placeholder="Enter your message...">
-          <button type="submit" class="msger-send-btn">Send</button>
+          <button type="submit" class="msger-send-btn" id="send-btn">Send</button>
+          <div id="loading-indicator">
+            <i class="fa fa-spinner fa-spin" style="color: #7b1113;font-size:42px"></i>
+          </div>
         </form>
       </section>
       <!-- partial -->
@@ -71,13 +75,19 @@
   const msgerInput = get(".msger-input");
   const msgerChat = get(".msger-chat");
 
+
+  const genInfo = document.getElementById("gen-info");
   const abtUPCAT = document.getElementById("abt-upcat");
+  const abtPostUPCAT = document.getElementById("abt-post-upcat");
   const abtND = document.getElementById("abt-nd");
   const abtSD = document.getElementById("abt-sd");
   const abtNFYA = document.getElementById("abt-nfya");
   const abtFS = document.getElementById("abt-fs");
   const abtSS = document.getElementById("abt-ss");
+  const abttransfer = document.getElementById("abt-transfer");
 
+  const loadingIndicator = document.getElementById('loading-indicator');
+  const sendButton = document.getElementById('send-btn');
 
   // Icons made by Freepik from www.flaticon.com
   const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
@@ -96,16 +106,50 @@
     botResponse(msgText);
   });
 
+  genInfo.addEventListener(
+    'click',
+    async () => {
+      await $.get("/getTag", { cat: "GEN" }).done(function (data) {
+        //console.log(rawText);
+        appendButton(BOT_NAME, BOT_IMG, "left", "General Information", data)  
+      });
+    },
+    false
+);
+
   abtUPCAT.addEventListener(
     'click',
     async () => {
       await $.get("/getTag", { cat: "UPCAT" }).done(function (data) {
         //console.log(rawText);
-        appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about UPCAT", data)  
       });
-      
     },
     false
+);
+
+abtPostUPCAT.addEventListener(
+  'click',
+  async () => {
+    await $.get("/getTag", { cat: "POSTEXAM" }).done(function (data) {
+      //console.log(rawText);
+      appendButton(BOT_NAME, BOT_IMG, "left", "Here are some commonly asked questions after taking the UPCAT", data)  
+    });
+    
+  },
+  false
+);
+
+abttransfer.addEventListener(
+  'click',
+  async () => {
+    await $.get("/getTag", { cat: "Transfer" }).done(function (data) {
+      //console.log(rawText);
+      appendButton(BOT_NAME, BOT_IMG, "left", "About Transferees", data)  
+    });
+    
+  },
+  false
 );
 
 abtFS.addEventListener(
@@ -113,7 +157,7 @@ abtFS.addEventListener(
   async () => {
     await $.get("/getTag", { cat: "ForeignStudent" }).done(function (data) {
       //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
+      appendButton(BOT_NAME, BOT_IMG, "left", "About the additional requirements for Foreign students", data)  
     });
     
   },
@@ -125,7 +169,7 @@ abtND.addEventListener(
   async () => {
     await $.get("/getTag", { cat: "NonDegree" }).done(function (data) {
       //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
+      appendButton(BOT_NAME, BOT_IMG, "left", "About Non-degree Programs", data)  
     });
     
   },
@@ -137,7 +181,7 @@ abtNFYA.addEventListener(
   async () => {
     await $.get("/getTag", { cat: "FirstYearAdmission" }).done(function (data) {
       //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
+      appendButton(BOT_NAME, BOT_IMG, "left", "About New First Year Admission", data)  
     });
     
   },
@@ -161,7 +205,7 @@ abtSS.addEventListener(
   async () => {
     await $.get("/getTag", { cat: "SpecialStudent" }).done(function (data) {
       //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
+      appendButton(BOT_NAME, BOT_IMG, "left", "About Special Student", data)  
     });
     
   },
@@ -226,6 +270,10 @@ abtSS.addEventListener(
       const msgText = formatMessage(data);
       appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
 
+      sendButton.disabled = false; // Enable the submit button
+      loadingIndicator.style.display = 'none';
+      sendButton.style.display = 'block';
+
     });
 
   }
@@ -237,7 +285,6 @@ abtSS.addEventListener(
       return data
       
     });
-
   }
 
 
@@ -262,6 +309,11 @@ abtSS.addEventListener(
     const msgText = val;
     console.log(val)
     if (!msgText) return;
+
+    // Hide the user input field and display the loading indicator
+    sendButton.disabled = true;
+    loadingIndicator.style.display = 'block';
+    sendButton.style.display = 'none';
 
     appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
     msgerInput.value = "";
