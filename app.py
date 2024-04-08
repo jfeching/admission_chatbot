@@ -10,7 +10,7 @@ nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
 
-model = load_model('model.h5')
+model = None
 intents = json.loads(open('data.json', encoding="utf8").read())
 words = pickle.load(open('texts.pkl', 'rb'))
 classes = pickle.load(open('labels.pkl', 'rb'))
@@ -18,6 +18,10 @@ classes = pickle.load(open('labels.pkl', 'rb'))
 
 lemmatizer = WordNetLemmatizer()
 
+def load():
+    global model
+    # Load the TensorFlow model here
+    model = load_model('model.h5')
 
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
@@ -37,7 +41,10 @@ def bow(sentence, words, show_details=True):
     return np.array(bag) 
 
 
-def predict_class(sentence, model):
+def predict_class(sentence):
+    global model
+    if model is None:
+        load()
     p = bow(sentence, words, show_details=False)
     res = model.predict(np.array([p]))[0]
     ERROR_THRESHOLD = 0.7
@@ -69,7 +76,7 @@ def getResponse(ints, intents_json):
     return result
 
 def chatbot_response(msg):
-    ints = predict_class(msg, model)
+    ints = predict_class(msg)
     res = getResponse(ints, intents)
     return res
 
