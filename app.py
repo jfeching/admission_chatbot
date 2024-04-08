@@ -6,6 +6,7 @@ from keras.models import load_model
 import json
 import random
 
+nltk.download('punkt')
 
 model = load_model('model.h5')
 intents = json.loads(open('data.json', encoding="utf8").read())
