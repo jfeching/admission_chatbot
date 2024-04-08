@@ -264,7 +264,7 @@ abtSS.addEventListener(
   function botResponse(rawText) {
 
     // Bot Response
-    $.get("/get", { msg: rawText }).done(function (data) {
+    $.get("/getReply", { msg: rawText }).done(function (data) {
       //console.log(rawText);
       //console.log(data);
       const msgText = formatMessage(data);
