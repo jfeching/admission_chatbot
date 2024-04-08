@@ -7,6 +7,8 @@ import json
 import random
 
 nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
 
 model = load_model('model.h5')
 intents = json.loads(open('data.json', encoding="utf8").read())
