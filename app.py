@@ -103,7 +103,3 @@ def get_bot_response():
 def get_tags():
     category = request.args.get('cat')
     return getTags(category)
-
-
-if __name__ == "__main__":
-    app.run()
