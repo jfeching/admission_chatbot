@@ -35,7 +35,7 @@
                 "See you later",
                 "Goodbye",
                 "I am Leaving",
-                "Have a Good day"
+                "Goodby ace"
             ],
             "responses": [
                 "Sad to see you go :(",
@@ -49,7 +49,8 @@
             "patterns": [
                 "i see",
                 "i understand",
-                "i appreciate it"
+                "i appreciate it",
+                "Thanks ace"
             ],
             "responses": [
                 "I'm glad I was able to help you. Feel free to ask more questions.",
@@ -62,7 +63,8 @@
             "patterns": [
                 "thank you for the information",
                 "thank you",
-                "thank you for answering"
+                "thank you for answering",
+                "Thanks ace"
             ],
             "responses": [
                 "You are welcome. Feel free to ask questions anytime.",
@@ -180,7 +182,7 @@
             "patterns": [
                 "What are the requirements for transfer applications?",
                 "reuirements for transferees",
-                "reqs fpr transferees",
+                "reqs for transferees",
                 "req for transfer applicants"
             ],
             "responses": [
@@ -215,7 +217,8 @@
             "tag": "reqSecondDegree",
             "patterns": [
                 "How do I apply for a second degree?",
-                "What are the application requirements for a second degree?"
+                "What are the application requirements for a second degree?",
+                "reqs for second degrees"
             ],
             "responses": [
                 "Here are the application requirements for a second degree: <ul> ** Official Transcript of Records – original copy and photocopy *  ** Accomplished UPLB Form No. 3 ( Undergraduate Admission Application ) *  ** 2 Letters of Recommendation addressed to the Dean of the College from former or current professors; if employed, one of the letters may come from the employer. *  ** Photocopy of Undergraduate Diploma *  ** Application fee: Php100.00 for Filipinos/Php150.00 for DVM applicants |  *  ** Additional requirements for non-Filipino applicants: *  For an applicant whose native language or whose medium of instruction in the secondary school is not English, official result of examination with minimum score as follows: | TOEFL : 500 for paper-based ; 173 for computer-based ; 61 for internet-based | IELTS   : 5.5 Overall Band Score </ul> | Application fee : US$20.00 for non-Filipinos"
@@ -276,10 +279,21 @@
             "context_set": ""
         },
         {
+            "tag": "unitsSpecialStudent",
+            "patterns": [
+                "How many units can a special student enroll?"
+            ],
+            "responses": [
+                "S/He shall not be allowed to enroll for more than 9 units per semester or to register for more than two years, except by special permission of the Dean."
+            ],
+            "context_set": ""
+        },
+        {
             "tag": "reqSpecialStudent",
             "patterns": [
                 "How do I apply to be a special student?",
-                "What are the application requirements for special stdents?"
+                "What are the application requirements for special stdents?",
+                "reqs for special student"
             ],
             "responses": [
                 "The application requirements for special students are as follows: <ul> ** Fully accomplished  Undergraduate Application Form (https://our.uplb.edu.ph/wp-content/uploads/2023/04/Undergraduate-Application-Form-3-2023.pdf) *  ** Original copy of Official Transcript of Records *  ** Photocopy of Diploma *  ** Application fee: Php100 .00 for Filipinos | ** Additional requirements for non-Filipino applicants: *  For an applicant whose native language or whose medium of instruction in the secondary school is not English, official result of examination with minimum score as follows: | TOEFL : 500 for paper-based ; 173 for computer-based ; 61 for internet-based | IELTS   : 5.5 Overall Band Score </ul> | Application fee : US$20.00 for non-Filipinos | Complete requirements should be submitted to: | UPLB Office of the University Registrar | Admission Section | G/F CAS Annex I Building | University of the Philippines Los Baños | 4031 College, Los Baños, Laguna Philippines"
@@ -361,6 +375,16 @@
             "context_set": ""
         },
         {
+            "tag": "helpdeskUPCAT",
+            "patterns": [
+                "What is the Online helpdesk"
+            ],
+            "responses": [
+                "The Online Helpdesk is open to answer your queries and concerns regarding the UPCAT 2025 application for incoming new first-year students for AY 2025-2026, starting 15 April 2024 until the deadline. |  You can access <a href='https://www.facebook.com/UPSystemOfficeOfAdmissions/posts/pfbid0SDzdrLQTSVW4pmwwMy8btcH9iJpqf8KVvUYSa1S6CXK4DJ7h5UEnLsScQfCBmVFJl'> this post</a> for more information."
+            ],
+            "context_set": ""
+        },
+        {
             "tag": "deadlineUPCAT",
             "patterns": [
                 "What is the deadline for filing of applications?"
@@ -373,7 +397,7 @@
         {
             "tag": "docsUPCAT",
             "patterns": [
-                "Whar are the required documents ro apply for UPCAT?"
+                "Whar are the required documents to apply for UPCAT?"
             ],
             "responses": [
                 "Please be mindful of the following steps in filing your application. Upon completing Form 1 in the Online Portal and clicking on 'Submit Form 1', a request will be sent to your high school to verify your enrollment. After SY 2022-2023, when all final grades in Grades 8 to 11 are available, your school will be requested to provide you with a copy of your school record either in digital or hardcopy. You are encouraged to follow up this request to expedite your application. Upon receipt, use this document as reference in filling out Form 2B in the same portal. A certified true copy of your grades placed inside a sealed envelope authenticated with a wet signature of an authorized school official on the flap should also be provided to UP by your high school. |  | For all applicants, these fully accomplished forms are required: <ul> ** Form 1 Personal Data Sheet (filled out by the applicant in March-April 2023) * ** Form 2A (filled out by high school in March-April 2023) * ** Form 2B High School Record (filled out by applicant in September 2023 provided the applicant took the UPCAT) ** A certified true copy of the Permanent Secondary School Record (F137/SF10) signed in wet signature of the authorized school personnel (sealed in an envelope with wet signature on the flap) should be submitted to the UP Office of Admissions. * </ul> IF High school graduate, you need your High school diploma | IF Graduating in 2024 from a local HS, you need the DepEd Certificate of Recognition or Permit to Operate(to be submitted by the high school) | ONLY IF Transferee (i.e. has taken subjects from another high school), you need the Certified clear photocopy of the Permanent Secondary School Record (F137/SF10) from other school with all the grades earned therein | For Foreign Applicants Only, the proof of payment of application processing fee is required"
@@ -559,7 +583,7 @@
             "context_set": ""
         },
         {
-            "tag": "waitlistedUPCAT",
+            "tag": "waitlistedPOSTEXAM",
             "patterns": [
                 "What happens if I am waitlisted"
             ],
@@ -569,7 +593,7 @@
             "context_set": ""
         },
         {
-            "tag": "notConfirmingSlotUPCAT",
+            "tag": "notConfirmingSlotPOSTEXAM",
             "patterns": [
                 "What happens if I was not able to confirm my slot?"
             ],
@@ -579,7 +603,7 @@
             "context_set": ""
         },
         {
-            "tag": "infoDPWASUPCAT",
+            "tag": "infoDPWASPOSTEXAM",
             "patterns": [
                 "What is DPWAS",
                 "What does DPWAS mean"
@@ -621,7 +645,7 @@
             "context_set": ""
         },
         {
-            "tag": "notPassingUPCAT",
+            "tag": "notPassingPOSTEXAM",
             "patterns": [
                 "What happens if I don’t pass the exam?"
             ],
@@ -641,6 +665,16 @@
             "context_set": ""
         },
         {
+            "tag": "contactUPLBOURGEN",
+            "patterns": [
+                "How do I contact UPLB OUR"
+            ],
+            "responses": [
+                "Here are the contact information of UPLB OUR: | UPLB Office of the University Registrar | Telephone:(049) 536-2553/ (049) 536-2426 | Email: our.uplb@up.edu.ph | Website: https://upcat.up.edu.ph | Address: G/F CAS Annex I Building UP Los Baños 4031 College, Los Baños, Laguna |"
+            ],
+            "context_set": ""
+        },
+        {
             "tag": "wrongIDUploadUPCAT",
             "patterns": [
                 "What is I uploaded an incorrect ID photo in the Form 1 portal"
@@ -651,7 +685,7 @@
             "context_set": ""
         },
         {
-            "tag": "passedUPCAT",
+            "tag": "passedPOSTEXAM",
             "patterns": [
                 "When will i know if I passed upcat",
                 "When will we know the results of the UPCAT?"
@@ -673,7 +707,7 @@
             "context_set": ""
         },
         {
-            "tag": "reconUPCAT",
+            "tag": "reconPOSTEXAM",
             "patterns": [
                 "How to file an appeal for reconsideration?"
             ],
@@ -703,7 +737,7 @@
             "context_set": ""
         },
         {
-            "tag": "gtSixYearsHSUPCAT",
+            "tag": "gtSixYearsHSUPCT",
             "patterns": [
                 "Can students who spent more than 6 years in Junior and Senior High School apply into UP?"
             ],
@@ -713,7 +747,7 @@
             "context_set": ""
         },
         {
-            "tag": "irregSchoolUPCAT",
+            "tag": "irregSchoolUPCT",
             "patterns": [
                 "Can someone who did not graduate in a regular school apply into UP (PEPT, ALS)?"
             ],
@@ -723,7 +757,7 @@
             "context_set": ""
         },
         {
-            "tag": "prevGraduatesUPCAT",
+            "tag": "prevGraduatesUPCT",
             "patterns": [
                 "Can someone who has already graduated from high school in the previous years still apply into UP?"
             ],
@@ -733,7 +767,7 @@
             "context_set": ""
         },
         {
-            "tag": "retakeUPCAT",
+            "tag": "retakeUPCT",
             "patterns": [
                 "Can somene who has taken the UPCAT before re-apply for this UPCAT cycle?"
             ],
@@ -743,7 +777,7 @@
             "context_set": ""
         },
         {
-            "tag": "collegeStudentUPCAT",
+            "tag": "collegeStudentUPCT",
             "patterns": [
                 "Can someone who is studying in another college but wants to study in UP apply through this UP College Admission cycle?"
             ],
@@ -818,7 +852,7 @@
                 "Can I submit additional requirements at a later time?"
             ],
             "responses": [
-                "The minimum requirements are enough for an application to be processed. Additional requirements may be requested by the Office of Admissions for specific cases. These requirements maybe submitted at a later time, but applicants should be reminded that if these documents are nnot submitted in time for processing of results, no results will be computed for them."
+                "The minimum requirements are enough for an application to be processed. Additional requirements may be requested by the Office of Admissions for specific cases. These requirements maybe submitted at a later time, but applicants should be reminded that if these documents are not submitted in time for processing of results, no results will be computed for them."
             ],
             "context_set": ""
         },
@@ -868,12 +902,12 @@
                 "How do qualifiers get selected for specific courses?"
             ],
             "responses": [
-                ""
+                "Qualifiers for each campus are screened for acceptance into one of the degree programs that they have chosen for that campus. Different grade predictors are used for different programs. Campus qualifiers are ranked for each course according to the degree program predictor. Top-ranking qualifiers are accepted according to the number of available slots for that program. | If you are among those selected for your first choice of course, you will no longer be screened for your second choice. If you don't make it into your first choice, you will then be screened according to the degree program predictor of your second course choice, and so on until the last degree course you have chosen (up to four) for the campus. If you still do not make it to your last course choice, you will remain qualified for the campus but will be asked to select from other degree programs with avalable slots (DPWAS)"
             ],
             "context_set": ""
         },
         {
-            "tag": "knowCourseQualifiedInto",
+            "tag": "knowCourseQualifiedIntoPOSTEXAM",
             "patterns": [
                 "How do we know what course we have qualified into?"
             ],
@@ -883,7 +917,7 @@
             "context_set": ""
         },
         {
-            "tag": "listOfQualifiers",
+            "tag": "listOfQualifiersPOSTEXAM",
             "patterns": [
                 "Where can we find the list of qualifiers?"
             ],
@@ -909,6 +943,37 @@
             ],
             "responses": [
                 "IF your name is not included in the List of UPCAT Qualifiers, you can try to appeal to other campuses. Each UP units sets its own criteria for appeals which you may inquire about form their campus website or from their respective Registrar's Offices. Please note that some UP units (i.e. LB, Baguio) require contracts that require students to finish in the campus (CANNOT TRANSFER) for freshmen admitted thru the appeals process. UP Diliman does not entertain appeals. | You may also enroll in another college or university for 1 year and earn at least 33 academic units with an average of 2.0 or better on the UP marking system. You can then apply for transfer into a UP campus through their respective Registrar's OFffices. Each UP campus has its own rules and criteria for accepting transfer students."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "howCHATBOT",
+            "patterns": [
+                "How do I use the chatbot?",
+                "How to interact with the chatbot?"
+            ],
+            "responses": [
+                "Hello, thank you for asking. You can click on a button on the left related to your question. Then, a list of questions related to that topic will be displayed. You can also directly type your question in the text box below. Good luck."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "whatCHATBOT",
+            "patterns": [
+                "What is this chatbot?"
+            ],
+            "responses": [
+                "Hello. I am Ace. This application is created as a chatbot for college admissions inquiry systems. I can answer questions regarding the UPCAT and some questions related Admissions to UPLB :). Specifically, I can answer some concerns related the application process for UPCAT, guidelines on the examination, and some queries related to post-exam. In addition, I can answer queries about admissions in UPLB to non-degree programs, second baccalaureate degrees, admissions of other applicants such as transferees, foreign students, and special students, as well as new first-year admissions."
+            ],
+            "context_set": ""
+        },
+        {
+            "tag": "purposeCHATBOT",
+            "patterns": [
+                "What is the purpose of this chatbot?"
+            ],
+            "responses": [
+                "Hi. I am Ace. I can answer questions regarding the UPCAT and some questions related Admissions to UPLB :). Specifically, I can answer some concerns related the application process for UPCAT, guidelines on the examination, and some queries related to post-exam. In addition, I can answer queries about admissions in UPLB to non-degree programs, second baccalaureate degrees, admissions of other applicants such as transferees, foreign students, and special students, as well as new first-year admissions. |  | REMINDER: This application is still under development. Information pertaining to UPCAT is not official and may be outdated. For specific concerns about current application, you may contact the respective offices directly."
             ],
             "context_set": ""
         },

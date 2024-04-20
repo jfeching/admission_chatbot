@@ -14,16 +14,18 @@
 .column {
     float: left;
     padding: 10px;
+
     height: 800px;
-    /* Should be removed. Only for demonstration */
 }
 
 .left {
     width: 25%;
+    background-color: #aaa;
 
 }
 
 .right {
+    background-color: #bbb;
     width: 75%;
 }
 
@@ -57,7 +59,7 @@ body {
     flex-flow: column wrap;
     justify-content: space-between;
     width: 99%;
-    margin: 25px 10px;
+    margin: 12px 1px;
     height: calc(100% - 50px);
     border: var(--border);
     border-radius: 5px;
@@ -101,8 +103,8 @@ body {
 }
 
 .msg-img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
     background: #ddd;
     background-repeat: no-repeat;
@@ -112,7 +114,7 @@ body {
 }
 
 .msg-bubble {
-    max-width: 450px;
+    max-width: 52%;
     padding: 15px;
     border-radius: 15px;
     background: var(--left-msg-bg);
@@ -124,6 +126,7 @@ ul {
 
 .msg-text {
     line-height: 1.6;
+
 }
 
 .msg-info {
@@ -208,10 +211,11 @@ ul {
     align-items: center;
     justify-content: space-between;
     height: 5.5em;
-    padding: 0 1.5em;
+    padding: 0 0.8em;
     background: #7b1113;
     box-shadow: 0 2px 3px rgba(0, 0, 0, .2), 0 3px 10px rgba(0, 0, 0, .07);
-    text-align: left
+    text-align: left;
+    margin-bottom: 20px;
 }
 
 .wc-header__title {
@@ -223,7 +227,8 @@ ul {
     letter-spacing: .5px;
     text-align: center;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: initial;
+    overflow-wrap: normal;
 }
 
 .wc-header__title span {
@@ -279,7 +284,7 @@ ul {
 
 .wc-menu__content::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background: #00118e
+    background: #014421
 }
 
 .wc-menu__content::-webkit-scrollbar-track {
@@ -288,7 +293,7 @@ ul {
 
 @-moz-document url-prefix("") {
     .wc-menu__content {
-        scrollbar-color: #00118e #0017c1;
+        scrollbar-color: #014421 #0017c1;
         scrollbar-width: thin
     }
 }
@@ -299,25 +304,23 @@ ul {
 
 .wc-menu__content-btn {
     box-sizing: border-box;
-    width: 95%;
+    width: 98%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-height: 2.9em;
-    margin: .3em;
+    margin: .15em;
     padding: .3em .8em;
-    padding-right: .1em;
-    border: 2px solid #293e95;
-    border-radius: 4px;
+    border: 2px solid #014421;
+    border-radius: 1px;
     background-color: #f2f0f5;
-    color: #293e95;
+    color: #014421;
     font-weight: bold;
-    line-height: 1.5;
+    line-height: 1.3;
     text-align: center;
     cursor: pointer;
     transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease;
     transition: opacity .3s ease-in-out;
-    font-size: 20px;
 }
 
 .vertical-center {
@@ -368,21 +371,53 @@ ul {
     min-height: 2.9em;
     margin: .3em;
     padding: .3em .8em;
-    padding-right: .1em;
-    border: 2px solid #293e95;
-    border-radius: 4px;
+    border: 2px solid #014421;
+    border-radius: 2px;
     background-color: #f2f0f5;
-    color: #293e95;
+    color: #014421;
     font-weight: bold;
-    line-height: 1.5;
+    line-height: 1.1;
     text-align: center;
     cursor: pointer;
     transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease;
     transition: opacity .3s ease-in-out;
-    font-size: 14px;
 }
 
 #loading-indicator {
     display: none;
     margin: auto;
+}
+
+@media screen and (min-width: 320px) {
+    body {
+        font-size: calc(12px + 6 * ((100vw - 320px) / 680));
+    }
+
+    .wc-menu__content-btn {
+        font-size: calc(11px + 6 * ((100vw - 320px) / 680));
+    }
+
+    .msg__content-btn {
+        font-size: calc(10px + 6 * ((100vw - 320px) / 680));
+    }
+
+    .wc-header__title {
+        font-size: calc(10px + 6 * ((100vw - 320px) / 680));
+
+    }
+
+}
+
+@media screen and (min-width: 1000px) {
+    body {
+        font-size: 16px;
+    }
+
+    .wc-menu__content-btn {
+        font-size: 16px;
+    }
+
+    .msg__content-btn {
+        font-size: 14px;
+    }
 }
