@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Chatbot</title>
+  <title>ACE Support Bot</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -26,13 +26,14 @@
     <button class="wc-menu__content-btn" id="abt-fs"><!----><span>About Foreign Students</span></button>
     <button class="wc-menu__content-btn" id="abt-ss"><!----><span>About Special Students</span></button>
     <button class="wc-menu__content-btn" id="abt-nfya"><!----><span>About New First Year Admissions</span></button>
+    <button class="wc-menu__content-btn" id="abt-cb"><!----><span>About Chatbot</span></button>
   </div>
   <div class="column right">
 
     <section class="msger">
         <header class="msger-header">
           <div class="msger-header-title">
-            <i class="fas fa-robot" style="color: #7b1113;"></i> Chatbot <i class="fas fa-robot" style="color: #7b1113;"></i>
+            <i class="fas fa-robot" style="color: #7b1113;"></i> ACE <i class="fas fa-robot" style="color: #7b1113;"></i>
           </div>
         </header>
     
@@ -42,12 +43,13 @@
     
             <div class="msg-bubble">
               <div class="msg-info">
-                <div class="msg-info-name">Chatbot</div>
+                <div class="msg-info-name">Ace Chatbot</div>
                 <div class="msg-info-time">12:45</div>
               </div>
     
               <div class="msg-text">
-                Hello. This is an inquiry chatbot. Please enter your question directly.
+                Hello. I am Ace. I can answer questions regarding the UPCAT and some questions related to Admissions in UPLB.
+                <br>You can try clicking the buttons on the left related to your question, or enter your question directly. Hope I can help.
               </div>
             </div>
           </div>
@@ -55,7 +57,7 @@
         </main>
     
         <form class="msger-inputarea">
-          <input type="text" class="msger-input" id="textInput" placeholder="Enter your message...">
+          <input type="text" class="msger-input" id="textInput" placeholder="Enter your message..." autocomplete="off">
           <button type="submit" class="msger-send-btn" id="send-btn">Send</button>
           <div id="loading-indicator">
             <i class="fa fa-spinner fa-spin" style="color: #7b1113;font-size:42px"></i>
@@ -85,6 +87,8 @@
   const abtFS = document.getElementById("abt-fs");
   const abtSS = document.getElementById("abt-ss");
   const abttransfer = document.getElementById("abt-transfer");
+  const abtchatbot = document.getElementById("abt-cb");
+
 
   const loadingIndicator = document.getElementById('loading-indicator');
   const sendButton = document.getElementById('send-btn');
@@ -92,7 +96,7 @@
   // Icons made by Freepik from www.flaticon.com
   const BOT_IMG = "bot.png"; 
   const PERSON_IMG = "user.png";
-  const BOT_NAME = "ChatBot";
+  const BOT_NAME = "Ace Chatbot";
   const PERSON_NAME = "You";
 
   msgerForm.addEventListener("submit", event => {
@@ -122,7 +126,8 @@
     async () => {
       await $.get("/getTag", { cat: "UPCAT" }).done(function (data) {
         //console.log(rawText);
-        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about UPCAT", data)  
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about UPCAT", shuffledArray.slice(0,9))  
       });
     },
     false
@@ -132,7 +137,6 @@ abtPostUPCAT.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "POSTEXAM" }).done(function (data) {
-      //console.log(rawText);
       appendButton(BOT_NAME, BOT_IMG, "left", "Here are some commonly asked questions after taking the UPCAT", data)  
     });
     
@@ -208,6 +212,17 @@ abtSS.addEventListener(
       appendButton(BOT_NAME, BOT_IMG, "left", "About Special Student", data)  
     });
     
+  },
+  false
+);
+
+abtchatbot.addEventListener(
+  'click',
+  async () => {
+    await $.get("/getTag", { cat: "CHATBOT" }).done(function (data) {
+      //console.log(rawText);
+      appendButton(BOT_NAME, BOT_IMG, "left", "About Chatbot", data)  
+    });
   },
   false
 );
