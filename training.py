@@ -65,7 +65,7 @@ train_x = list(training[:, 0])
 train_y = list(training[:, 1])
 print("Training data created")
 
-# Create model - 4 layers. First layer 512 neurons, second layer 256 neurons and 3rd output layer128 neurons and the 4th layer contains number of neurons
+# Create model - 4 layers. First layer 1024 neurons, second layer 512 neurons and 3rd output layer 256 neurons and the 4th layer contains number of neurons
 # equal to number of intents to predict output intent with softmax
 model = Sequential()
 model.add(Dense(1024, input_shape=(len(train_x[0]),), activation='relu'))
@@ -81,5 +81,5 @@ sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy', tf.keras.metrics.Precision(), tf.keras.metrics.Recall()])
 
 # fitting and saving the mode
-hist = model.fit(np.array(train_x), np.array(train_y), epochs=300, batch_size=32, verbose=1)
+hist = model.fit(np.array(train_x), np.array(train_y), epochs=350, batch_size=32, verbose=1)
 model.save('model.h5', hist)
