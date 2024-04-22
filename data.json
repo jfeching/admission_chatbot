@@ -968,7 +968,7 @@
             "context_set": ""
         },
         {
-            "tag": "purposeCHATBOT",
+            "tag": "purposeCHATBOTGEN",
             "patterns": [
                 "What is the purpose of this chatbot?"
             ],
