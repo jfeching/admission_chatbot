@@ -98,9 +98,10 @@
         {
             "tag": "reqFirstYearAdmission",
             "patterns": [
+                "What are the requirements for new first year admissions?",
                 "What are the requirements for new first-year admissions?",
-                "requirements for new first-year admissions?",
-                "reqs for new first-year admissions?"
+                "requirements for new first year admissions?",
+                "reqs for new first year admissions?"
             ],
             "responses": [
                 "Here are the requirements for new first-year admissions: | (1) completion of the high school program in the country where s/he had secondary education (including the completion of a one- or two-year pre-university education in a country where such is a prerequisite for admission to a bachelor’s degree program); | (2) qualifying in a college-qualifying national or international foreign-administered examination such as the Scholastic Aptitude Test (SAT), OR General Certificate of Education (GCE) Examination, OR the International Baccalaureate (IB) Diploma. Minimum requirement are as follows: SAT: minimum total score of 1270 (620 in Math and 650 in Evidence-Based Writing and Critical Reading) GCE: 2 Ordinary (O) level passes and 3 Advanced (A) level passes IB:International Baccalaureate Diploma | (3) in the case of an applicant whose native language or whose medium of instruction in the secondary school is not English, a minimum score of 500 if paper-based, 173 if computer-based or 61 if IBT-based, in the Test of English as a Foreign Language (TOEFL)/5.5 in International English Language Testing System (IELTS)."
@@ -306,7 +307,7 @@
                 "What are the ways of admission into the university?"
             ],
             "responses": [
-                "Admission into the university can be done through the UP College of Admission Test. The UPLB also offers admission for special student, non-degree students, transferees, new first-year student, and second degrees if the applicant meet the requirements."
+                "Admission into the university can be done through the UP College of Admission Test. The UPLB also offers admission for special student, non-degree students, transferees, new first-year student, and second degrees if the applicant meets the requirements."
             ],
             "context_set": ""
         },
@@ -397,7 +398,7 @@
         {
             "tag": "docsUPCAT",
             "patterns": [
-                "Whar are the required documents to apply for UPCAT?"
+                "What are the required documents to apply for UPCAT?"
             ],
             "responses": [
                 "Please be mindful of the following steps in filing your application. Upon completing Form 1 in the Online Portal and clicking on 'Submit Form 1', a request will be sent to your high school to verify your enrollment. After SY 2022-2023, when all final grades in Grades 8 to 11 are available, your school will be requested to provide you with a copy of your school record either in digital or hardcopy. You are encouraged to follow up this request to expedite your application. Upon receipt, use this document as reference in filling out Form 2B in the same portal. A certified true copy of your grades placed inside a sealed envelope authenticated with a wet signature of an authorized school official on the flap should also be provided to UP by your high school. |  | For all applicants, these fully accomplished forms are required: <ul> ** Form 1 Personal Data Sheet (filled out by the applicant in March-April 2023) * ** Form 2A (filled out by high school in March-April 2023) * ** Form 2B High School Record (filled out by applicant in September 2023 provided the applicant took the UPCAT) ** A certified true copy of the Permanent Secondary School Record (F137/SF10) signed in wet signature of the authorized school personnel (sealed in an envelope with wet signature on the flap) should be submitted to the UP Office of Admissions. * </ul> IF High school graduate, you need your High school diploma | IF Graduating in 2024 from a local HS, you need the DepEd Certificate of Recognition or Permit to Operate(to be submitted by the high school) | ONLY IF Transferee (i.e. has taken subjects from another high school), you need the Certified clear photocopy of the Permanent Secondary School Record (F137/SF10) from other school with all the grades earned therein | For Foreign Applicants Only, the proof of payment of application processing fee is required"
@@ -660,7 +661,7 @@
                 "How do I contact the office of admissions"
             ],
             "responses": [
-                "Here are the contact information of the Office of Admissions: | UP OFFICE OF ADMISSIONS | Telefax: +63 2 89274561 | Telephone: +63 2 8981-8500 | loc. 3827/3828/3830/3831 | Email: upcollegeapplications.oadms@up.edu.ph | Website: https://upcat.up.edu.ph | Address: Kalaw cor. Quirino Ave., UP Diliman, Quezon City 1101 Philippines |"
+                "Here are the contact information of the Office of Admissions: | UP OFFICE OF ADMISSIONS | Telefax: +63 2 89274561 | Telephone: +63 2 8981-8500 | loc. 3827/3828/3830/3831 | Email: upcollegeapplications.oadms@up.edu.ph | Website: https://upcat.up.edu.ph | Address: Kalaw cor. Quirino Ave., UP Diliman, Quezon City 1101 Philippines"
             ],
             "context_set": ""
         },
