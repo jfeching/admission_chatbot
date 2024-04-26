@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
@@ -70,7 +71,7 @@
         </main>
     
         <form class="msger-inputarea">
-          <input type="text" class="msger-input" id="textInput" placeholder="Enter your message..." autocomplete="off">
+          <input type="text" class="msger-input" id="autoComplete" placeholder="Enter your message..." autocomplete="off">
           <button type="submit" class="msger-send-btn" id="send-btn">Send</button>
           <div id="loading-indicator">
             <i class="fa fa-spinner fa-spin" style="color: #7b1113;font-size:42px"></i>
@@ -123,6 +124,20 @@
     botResponse(msgText);
   });
 
+  msgerInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+  
+      const msgText = msgerInput.value;
+      if (!msgText) return;
+  
+      appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+      msgerInput.value = "";
+      botResponse(msgText);
+        
+    }
+  });
+
   genInfo.addEventListener(
     'click',
     async () => {
@@ -152,7 +167,6 @@ abtPostUPCAT.addEventListener(
     await $.get("/getTag", { cat: "POSTEXAM" }).done(function (data) {
       appendButton(BOT_NAME, BOT_IMG, "left", "Here are some commonly asked questions after taking the UPCAT", data)  
     });
-    
   },
   false
 );
@@ -240,8 +254,10 @@ abtchatbot.addEventListener(
   false
 );
 
+
+
   function appendButton(name, img, side, text, tags) {
-    console.log(tags)
+//console.log(tags)
     let msgHTML = `
 <div class="msg ${side}-msg">
   <div class="msg-img" style="background-image: url('/static/${img}')"></div>
@@ -302,7 +318,15 @@ abtchatbot.addEventListener(
       sendButton.style.display = 'block';
 
     });
+  }
 
+  function loadResponses() {
+
+    // Bot Response
+    $.get("/getReply", { msg: "hi" }).done(function (data) {
+      console.log("LOADED");
+
+    });
   }
 
   async function fetchTag(cat) {
@@ -313,7 +337,6 @@ abtchatbot.addEventListener(
       
     });
   }
-
 
   // Utils
   function get(selector, root = document) {
@@ -334,7 +357,7 @@ abtchatbot.addEventListener(
 
   function sendButtonValue(val){
     const msgText = val;
-    console.log(val)
+    //console.log(val)
     if (!msgText) return;
 
     // Hide the user input field and display the loading indicator
@@ -354,6 +377,47 @@ abtchatbot.addEventListener(
     return `${h.slice(-2)}:${m.slice(-2)}`;
   }
 
+
+  var intents; // Variable to store the result
+
+  $(document).ready(function() {
+    $.ajax({
+        url: '/getTag',
+        type: 'GET',
+        data: {cat: ""},
+        success: function(response) {
+            // Store the response in the variable
+            intents = response.slice(5, response.length-2);
+            loadResponses();
+            const autoCompleteJS = new autoComplete({
+              placeHolder: "Enter your message...",
+              data: {
+              src:intents,
+              cache: true,
+              },
+              resultItem: {
+                  highlight: true
+              },
+              resultsList: {
+                maxResults: 10
+            },
+              events: {
+                  input: {
+                      selection: (event) => {
+                          const selection = event.detail.selection.value;
+                          autoCompleteJS.input.value = selection;
+                      }
+                  }
+              }
+          });
+
+        },
+        error: function(xhr, status, error) {
+            // Handle errors
+            console.error('Error:', error);
+        }
+    });
+});
 </script>
 </body>
 </html>

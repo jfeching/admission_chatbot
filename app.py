@@ -77,6 +77,7 @@ def getResponse(ints, intents_json):
 
 def chatbot_response(msg):
     ints = predict_class(msg)
+    print(ints)
     res = getResponse(ints, intents)
     return res
 
