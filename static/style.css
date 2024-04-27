@@ -10,6 +10,11 @@
     box-sizing: border-box;
 }
 
+
+.row {
+    height: 100%
+}
+
 /* Create two unequal columns that floats next to each other */
 .column {
     float: left;
@@ -514,4 +519,12 @@ ul {
     .msg__content-btn {
         font-size: 14px;
     }
+}
+
+
+@media screen and (min-height: 1000px) {
+    .column {
+        height: 1000px;
+    }
+
 }

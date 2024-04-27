@@ -127,9 +127,13 @@
   msgerInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-  
       const msgText = msgerInput.value;
       if (!msgText) return;
+
+      // Hide the user input field and display the loading indicator
+      sendButton.disabled = true;
+      loadingIndicator.style.display = 'block';
+      sendButton.style.display = 'none';
   
       appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
       msgerInput.value = "";
@@ -406,6 +410,11 @@ abtchatbot.addEventListener(
                       selection: (event) => {
                           const selection = event.detail.selection.value;
                           autoCompleteJS.input.value = selection;
+                      },
+                      keydown: (event) => {
+                        if (event.key === 'Enter') {
+                          autoCompleteJS.close();
+                        }
                       }
                   }
               }
