@@ -123,7 +123,7 @@
         {
             "tag": "InfoTransfer1Applicant",
             "patterns": [
-                "What are T1 apllicants?",
+                "What are T1 applicants?",
                 "Am I a T1 applicant",
                 "T1 applicant info"
             ],
@@ -135,7 +135,7 @@
         {
             "tag": "InfoTransfer2Applicant",
             "patterns": [
-                "What are T2 apllicants?",
+                "What are T2 applicants?",
                 "Am I a T2 applicant",
                 "T2 applicant info"
             ],
