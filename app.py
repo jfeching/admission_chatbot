@@ -5,13 +5,13 @@ import numpy as np
 from keras.models import load_model
 import json
 import random
+import psycopg2
 
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
 
 model = None
-intents = json.loads(open('data.json', encoding="utf8").read())
 words = pickle.load(open('texts.pkl', 'rb'))
 classes = pickle.load(open('labels.pkl', 'rb'))
 
@@ -58,38 +58,54 @@ def predict_class(sentence):
     print(return_list)
     return return_list
 
-def getResponse(ints, intents_json):
+def getResponse(ints):
+    conn = psycopg2.connect(
+    database="intents_db", user='postgres', password='cisfran567', host='127.0.0.1', port= '5432'
+    )
+    #Creating a cursor object using the cursor() method
+    cursor = conn.cursor()
+    cursor.execute('''SELECT tag, responses FROM intents''')
 
-    list_of_intents = intents_json['intents']
+    rows = cursor.fetchall()
+    list_of_intents = rows #[[tag, [responses]], [[tag, [responses]]...]
 
     if ints:
         tag = ints[0]['intent']
         for i in list_of_intents:
-            if i['tag'] == tag:
-                result = random.choice(i['responses'])
+            if i[0] == tag: #i[0] is the tag
+                result = random.choice(i[1]).encode('latin-1').decode('unicode-escape') #i[1] is the list of responses
                 break
     else:
         # Access the last intent in the list
-        last_intent = list_of_intents[-1]
+        last_intent = rows[-1]
 
-        result = random.choice(last_intent['responses'])
+        result = random.choice(last_intent[1])
     return result
 
 def chatbot_response(msg):
     ints = predict_class(msg)
     print(ints)
-    res = getResponse(ints, intents)
+    res = getResponse(ints)
     return res
 
 
 def getTags(category):
-    int = intents['intents']
+    #Establishing the connection
+    conn = psycopg2.connect(
+    database="intents_db", user='postgres', password='cisfran567', host='127.0.0.1', port= '5432'
+    )
+    #Creating a cursor object using the cursor() method
+    cursor = conn.cursor()
+    cursor.execute('''SELECT tag, patterns FROM intents''')
+
+    rows = cursor.fetchall()
+    int = rows
 
     result = []
      
     for i in int:
-        if category in i['tag']:
-            result.append(i['patterns'][0])
+        if category in i[0]: #check if cat is in tag
+            result.append(i[1][0]) #append first pattern
     return result
 
 from flask import Flask, render_template, request
@@ -103,6 +119,9 @@ app.static_folder = 'static'
 def home():
     return render_template("index.html")
 
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
 
 @app.route("/getReply")
 def get_bot_response():
