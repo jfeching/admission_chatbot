@@ -340,9 +340,10 @@ ul {
 
 .wc-menu__content-btn:focus,
 .wc-menu__content-btn:hover {
-    background-color: #f2f0f5;
-    color: #293e95;
-    opacity: .8;
+    background-color: #7b1113;
+    color: #f2f0f5;
+    font-weight: bolder;
+    opacity: .95;
     transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease
 }
 
@@ -369,7 +370,7 @@ ul {
 }
 
 
-.msg__content-btn {
+.msg-content-btn {
     box-sizing: border-box;
     width: 95%;
     display: inline-flex;
@@ -389,6 +390,15 @@ ul {
     transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease;
     transition: opacity .3s ease-in-out;
 }
+
+.msg-content-btn:focus,
+.msg-content-btn:hover {
+    background-color: #7b1113;
+    color: #f2f0f5;
+    font-weight: 200;
+    transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease
+}
+
 
 #loading-indicator {
     display: none;
@@ -438,7 +448,7 @@ ul {
 .autoComplete_wrapper>ul[hidden],
 .autoComplete_wrapper>ul:empty {
     display: block;
-    opacity: 0;
+    opacity: 0.1;
     transform: scale(0);
 }
 
@@ -460,12 +470,12 @@ ul {
 
 .autoComplete_wrapper>ul>li::selection {
     color: rgba(#ffffff, 0);
-    background-color: rgba(#ffffff, 0);
+    background-color: rgba(#ffffff, );
 }
 
 .autoComplete_wrapper>ul>li:hover {
     cursor: pointer;
-    background-color: rgba(123, 123, 123, 0.1);
+    background-color: rgba(123, 123, 123, 0.9);
 }
 
 .autoComplete_wrapper>ul>li mark {
@@ -498,7 +508,7 @@ ul {
         font-size: calc(11px + 6 * ((100vw - 320px) / 680));
     }
 
-    .msg__content-btn {
+    .msg-content-btn {
         font-size: calc(10px + 6 * ((100vw - 320px) / 680));
     }
 
@@ -518,7 +528,7 @@ ul {
         font-size: 16px;
     }
 
-    .msg__content-btn {
+    .msg-content-btn {
         font-size: 14px;
     }
 }

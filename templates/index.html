@@ -34,7 +34,6 @@
     <section class="msger">
         <header class="msger-header">
           <div class="msger-header-title">
-            <i class="fas fa-robot" style="color: #7b1113;"></i> ACE <i class="fas fa-robot" style="color: #7b1113;"></i>
           </div>
         </header>
     
@@ -158,8 +157,13 @@
     async () => {
       await $.get("/getTag", { cat: "UPCAT" }).done(function (data) {
         //console.log(rawText);
-        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
-        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about UPCAT", shuffledArray.slice(0,9))  
+        if (data.length>10){
+          const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+          appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about UPCAT", shuffledArray.slice(0,9))  
+        }else{
+          appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about UPCAT", data)  
+        }
+
       });
     },
     false
@@ -169,7 +173,13 @@ abtPostUPCAT.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "POSTEXAM" }).done(function (data) {
-      appendButton(BOT_NAME, BOT_IMG, "left", "Here are some commonly asked questions after taking the UPCAT", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ after taking the UPCAT", shuffledArray.slice(0,9))  
+      } else{
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are the commonly asked questions after taking the UPCAT", data)  
+
+      }
     });
   },
   false
@@ -179,8 +189,12 @@ abttransfer.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "Transfer" }).done(function (data) {
-      //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About Transferees", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about Transferees", shuffledArray.slice(0,9))  
+      } else{     
+         appendButton(BOT_NAME, BOT_IMG, "left", "About Transferees", data)  
+      }
     });
     
   },
@@ -191,8 +205,12 @@ abtFS.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "ForeignStudent" }).done(function (data) {
-      //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About the additional requirements for Foreign students", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some commonly asked questions about Foreign Students", shuffledArray.slice(0,9))  
+      } else{     
+        appendButton(BOT_NAME, BOT_IMG, "left", "About the additional requirements for Foreign students", data)  
+      }
     });
     
   },
@@ -203,8 +221,12 @@ abtND.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "NonDegree" }).done(function (data) {
-      //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About Non-degree Programs", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about Non-degree Programs", shuffledArray.slice(0,9))  
+      } else{     
+            appendButton(BOT_NAME, BOT_IMG, "left", "About Non-degree Programs", data)  
+      }
     });
     
   },
@@ -215,8 +237,12 @@ abtNFYA.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "FirstYearAdmission" }).done(function (data) {
-      //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About New First Year Admission", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about New First Year Admission", shuffledArray.slice(0,9))  
+      } else{     
+            appendButton(BOT_NAME, BOT_IMG, "left", "About New First Year Admission", data)  
+      }
     });
     
   },
@@ -227,8 +253,12 @@ abtNFYA.addEventListener(
     'click',
     async () => {
       await $.get("/getTag", { cat: "SecondDegree" }).done(function (data) {
-        //console.log(rawText);
-        appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
+        if (data.length>10){
+          const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+          appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about Second Degree", shuffledArray.slice(0,9))  
+        } else{     
+          appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data) 
+        }         
       });
       
     },
@@ -239,8 +269,12 @@ abtSS.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "SpecialStudent" }).done(function (data) {
-      //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About Special Student", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some commonly asked questions about Special Student", shuffledArray.slice(0,9))  
+      } else{     
+        appendButton(BOT_NAME, BOT_IMG, "left", "About Special Student", data)  
+      }
     });
     
   },
@@ -251,14 +285,16 @@ abtchatbot.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "CHATBOT" }).done(function (data) {
-      //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About Chatbot", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some commonly asked questions about the Chatbot", shuffledArray.slice(0,9))  
+      } else{     
+        appendButton(BOT_NAME, BOT_IMG, "left", "About Chatbot", data) 
+      }  
     });
   },
   false
 );
-
-
 
   function appendButton(name, img, side, text, tags) {
 //console.log(tags)
@@ -277,7 +313,7 @@ abtchatbot.addEventListener(
   // Loop through the array and create buttons
   for (var i = 0; i < tags.length; i++) {
     // Create a new button element
-    msgHTML+= `<button class="msg__content-btn" value="${tags[i]}" onclick="sendButtonValue(this.value)"><!----><span>${tags[i]}</span></button>
+    msgHTML+= `<button class="msg-content-btn" value="${tags[i]}" onclick="sendButtonValue(this.value)"><!----><span>${tags[i]}</span></button>
     `
   }
 
