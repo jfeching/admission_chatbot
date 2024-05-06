@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ACE Support Bot</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    /* Style for the login form container */
+.login-container {
+    width: 300px;
+    margin: 0 auto;
+}
+
+/* Style for the login form */
+.login-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for input fields */
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+/* Style for submit button */
+.login-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for submit button */
+.login-form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Style for placeholders */
+.login-form input[type="text"]::placeholder,
+.login-form input[type="password"]::placeholder {
+    color: #aaa;
+}
+
+/* Style for form header */
+.login-form h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="login-container">
+        <h1>ADMIN Login</h1>
+        <form class="login-form" method="POST" action="{{ url_for('login') }}">
+            <input type="text" name="username" placeholder="Username" autocompete="off"><br>
+            <input type="password" name="password" placeholder="Password" autocompete="off"><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+
+<script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+<script>
+
+    
+</script>
+</body>
+</html>
+

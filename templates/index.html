@@ -30,59 +30,53 @@
     <button class="wc-menu__content-btn" id="abt-cb"><!----><span>About Chatbot</span></button>
   </div>
   <div class="column right">
-
     <section class="msger">
-        <header class="msger-header">
-          <div class="msger-header-title">
-            <a href="{{ url_for('admin') }}">Admin</a>
+      <header class="msger-header">
+        <div class="msger-header-title">
+        </div>
+      </header>
+      <main class="msger-chat">
+        <div class="msg left-msg">
+          <div class="msg-img" style="background-image: url('/static/bot.png')"></div>
+    
+          <div class="msg-bubble">
+            <div class="msg-info">
+              <div class="msg-info-name">Ace Chatbot</div>
+            </div>
+    
+            <div class="msg-text">
+              Hello. I am Ace. I can answer questions regarding the UPCAT and some questions related to Admissions in UPLB.
+              <br>You can try clicking the buttons on the left related to your question, or enter your question directly. Hope I can help.
+            </div>
+            
           </div>
-        </header>
+        </div>
+        <div class="msg left-msg">
+          <div class="msg-img" style="background-image: url('/static/bot.png')"></div>
     
-        <main class="msger-chat">
-          <div class="msg left-msg">
-            <div class="msg-img" style="background-image: url('/static/bot.png')"></div>
+          <div class="msg-bubble">
+            <div class="msg-info">
+              <div class="msg-info-name">Ace Chatbot</div>
+            </div>
     
-            <div class="msg-bubble">
-              <div class="msg-info">
-                <div class="msg-info-name">Ace Chatbot</div>
-              </div>
-    
-              <div class="msg-text">
-                Hello. I am Ace. I can answer questions regarding the UPCAT and some questions related to Admissions in UPLB.
-                <br>You can try clicking the buttons on the left related to your question, or enter your question directly. Hope I can help.
-              </div>
-              
+            <div class="msg-text">
+              REMINDER: This application is still under development. Information pertaining to UPCAT is not official and may be outdated. For specific concerns about current application, you may contact the respective offices directly.
             </div>
           </div>
-          <div class="msg left-msg">
-            <div class="msg-img" style="background-image: url('/static/bot.png')"></div>
+        </div>
     
-            <div class="msg-bubble">
-              <div class="msg-info">
-                <div class="msg-info-name">Ace Chatbot</div>
-              </div>
+      </main>
     
-              <div class="msg-text">
-                REMINDER: This application is still under development. Information pertaining to UPCAT is not official and may be outdated. For specific concerns about current application, you may contact the respective offices directly.
-              </div>
-            </div>
-          </div>
-    
-        </main>
-    
-        <form class="msger-inputarea">
-          <input type="text" class="msger-input" id="autoComplete" placeholder="Enter your message..." autocomplete="off">
-          <button type="submit" class="msger-send-btn" id="send-btn">Send</button>
-          <div id="loading-indicator">
-            <i class="fa fa-spinner fa-spin" style="color: #7b1113;font-size:42px"></i>
-          </div>
-        </form>
-      </section>
-      <!-- partial -->
-    
+      <form class="msger-inputarea">
+        <input type="text" class="msger-input" id="autoComplete" placeholder="Enter your message..." autocomplete="off">
+        <button type="submit" class="msger-send-btn" id="send-btn">Send</button>
+        <div id="loading-indicator">
+          <i class="fa fa-spinner fa-spin" style="color: #7b1113;font-size:42px"></i>
+        </div>
+      </form>
+    </section>
   </div>
 </div>
-
 
 <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
 <script>
@@ -346,13 +340,18 @@ abtchatbot.addEventListener(
   }
 
   function botResponse(rawText) {
-
     // Bot Response
     $.get("/getReply", { msg: rawText }).done(function (data) {
       //console.log(rawText);
       //console.log(data);
       const msgText = formatMessage(data);
-      appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+
+      if (msgText === "ADMIN"){
+        appendMessage(BOT_NAME, BOT_IMG, "left", 'Hello Admin, <br> <a href="{{ url_for('admin_login') }}">Go to Admin Page</a>');
+        
+      } else{ 
+        appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+    }
 
       sendButton.disabled = false; // Enable the submit button
       loadingIndicator.style.display = 'none';
@@ -362,7 +361,6 @@ abtchatbot.addEventListener(
   }
 
   function loadResponses() {
-
     // Bot Response
     $.get("/getReply", { msg: "hi" }).done(function (data) {
       console.log("LOADED");

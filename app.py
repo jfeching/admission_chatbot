@@ -7,6 +7,21 @@ import json
 import random
 import psycopg2
 
+# Import the necessary module
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from the .env file (if present)
+load_dotenv()
+
+# Access environment variables as if they came from the actual environment
+SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_CODE = os.getenv('SECRET_CODE')
+ADMIN_PASS=os.getenv('ADMIN_PASS')
+ADMIN_EMAIL=os.getenv('ADMIN_EMAIL')
+DB_PASS=os.getenv('DB_PASS')
+
+
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
@@ -40,6 +55,14 @@ def bow(sentence, words, show_details=True):
                     print("found in bag: %s" % w)
     return np.array(bag) 
 
+def connect_db():
+    return psycopg2.connect(
+    database="intents_db", 
+    user='postgres', 
+    password=DB_PASS, 
+    host='127.0.0.1', 
+    port= '5432'
+    )
 
 def predict_class(sentence):
     global model
@@ -59,9 +82,7 @@ def predict_class(sentence):
     return return_list
 
 def getResponse(ints):
-    conn = psycopg2.connect(
-    database="intents_db", user='postgres', password='cisfran567', host='127.0.0.1', port= '5432'
-    )
+    conn = connect_db()
     #Creating a cursor object using the cursor() method
     cursor = conn.cursor()
     cursor.execute('''SELECT tag, responses FROM intents''')
@@ -69,6 +90,7 @@ def getResponse(ints):
     rows = cursor.fetchall()
     list_of_intents = rows #[[tag, [responses]], [[tag, [responses]]...]
 
+    conn.close()
     if ints:
         tag = ints[0]['intent']
         for i in list_of_intents:
@@ -83,37 +105,66 @@ def getResponse(ints):
     return result
 
 def chatbot_response(msg):
-    ints = predict_class(msg)
-    print(ints)
-    res = getResponse(ints)
-    return res
+    if msg == SECRET_CODE:
+        res = "ADMIN"
+        return res
+    else:
+        ints = predict_class(msg)
+        print(ints)
+        res = getResponse(ints)
+        return res
 
 
 def getTags(category):
     #Establishing the connection
-    conn = psycopg2.connect(
-    database="intents_db", user='postgres', password='cisfran567', host='127.0.0.1', port= '5432'
-    )
+    conn = connect_db()
     #Creating a cursor object using the cursor() method
     cursor = conn.cursor()
     cursor.execute('''SELECT tag, patterns FROM intents''')
 
     rows = cursor.fetchall()
-    int = rows
+    intents = rows
 
     result = []
-     
-    for i in int:
+    
+    conn.close()
+    for i in intents:
         if category in i[0]: #check if cat is in tag
             result.append(i[1][0]) #append first pattern
     return result
 
-from flask import Flask, render_template, request
 
-
+from flask import Flask, render_template, request, redirect, url_for, session
+from flask_session import Session
 app = Flask(__name__)
-app.static_folder = 'static'
 
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+app.static_folder = 'static'
+app.secret_key = SECRET_KEY
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        # Dummy user validation
+        if username == ADMIN_EMAIL and password == ADMIN_PASS:
+            session['username'] = username
+            return redirect(url_for('admin'))
+        else:
+            return render_template('admin_login.html')
+    else:
+        return render_template('admin_login.html')
+    
+@app.route('/logout')
+def logout():
+    session["name"] = None
+    session.pop('username', None)
+    return redirect(url_for('home'))
 
 @app.route("/")
 def home():
@@ -121,13 +172,52 @@ def home():
 
 @app.route('/admin')
 def admin():
-    return render_template('admin.html')
+    if not session.get("username"):
+        # if not there in the session then redirect to the login page
+        return redirect("/login")
+    if 'username' in session:
+        username = session['username']
+        responses=getTags('')
+        responses=responses[5:len(responses)-2]
+        return render_template('admin.html', len=len(responses), intents=responses)
+
+
+@app.route('/admin_login')
+def admin_login():
+    return render_template('admin_login.html')
 
 @app.route("/getReply")
 def get_bot_response():
     userText = request.args.get('msg')
     return chatbot_response(userText)
 
+@app.route("/update")
+def update_response():
+    pattern = request.args.get('pattern')
+    oldResponse = request.args.get('old')
+    newResponse = request.args.get('new')
+
+    conn = connect_db()
+    #Creating a cursor object using the cursor() method
+    cursor = conn.cursor()
+    cursor.execute(f"""SELECT tag, patterns, responses FROM intents WHERE '{pattern}' = ANY(patterns)""")
+
+    rows = cursor.fetchone()
+
+    print(rows)
+    if pattern in rows[1]: #check if cat is in tag
+        for count, i in enumerate(rows[2]):
+            if oldResponse == i:
+                rows[2][count]=newResponse
+                cursor.execute(f"""UPDATE intents SET responses[{count+1}]='{newResponse}' WHERE tag='{rows[0]}'""")
+                conn.commit()
+                break
+    else:
+        conn.close()
+        return "Update FAILED"
+
+    conn.close()
+    return f"Updated {oldResponse} to {newResponse} Successfully"
 
 @app.route("/getTag")
 def get_tags():
