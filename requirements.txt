@@ -5,5 +5,7 @@ keras==2.10.0
 psycopg2
 Keras-Preprocessing==1.1.2
 tensorflow==2.10.0
+Flask-Session
+python-dotenv
 Flask
 Gunicorn
