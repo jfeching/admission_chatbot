@@ -338,11 +338,10 @@ ul {
     transform: translateY(-50%);
 }
 
-.wc-menu__content-btn:focus,
 .wc-menu__content-btn:hover {
     background-color: #7b1113;
     color: #f2f0f5;
-    font-weight: bolder;
+    font-weight: bold;
     opacity: .95;
     transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease
 }
@@ -391,11 +390,10 @@ ul {
     transition: opacity .3s ease-in-out;
 }
 
-.msg-content-btn:focus,
 .msg-content-btn:hover {
     background-color: #7b1113;
     color: #f2f0f5;
-    font-weight: 200;
+    font-weight: bold;
     transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease
 }
 
