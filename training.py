@@ -11,6 +11,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
 from keras.optimizers import SGD
 import random
+import psycopg2
 
 lemmatizer = WordNetLemmatizer()
 words = []
@@ -83,3 +84,41 @@ model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy
 # fitting and saving the mode
 hist = model.fit(np.array(train_x), np.array(train_y), epochs=350, batch_size=32, verbose=1)
 model.save('model.h5', hist)
+
+#Establishing the connection
+conn = psycopg2.connect(
+   database="intents_db", user='postgres', password='cisfran567', host='127.0.0.1', port= '5432'
+)
+#Creating a cursor object using the cursor() method
+cursor = conn.cursor()
+
+#Doping EMPLOYEE table if already exists.
+cursor.execute("DROP TABLE IF EXISTS intents")
+
+#Creating table as per requirement
+sql ='''CREATE TABLE intents(
+    id SERIAL PRIMARY KEY,
+    tag VARCHAR(50) NOT NULL,
+    patterns TEXT[] NOT NULL,
+    responses TEXT[] NOT NULL
+)'''
+cursor.execute(sql)
+print("Table created successfully........")
+conn.commit()
+data_file = open('data.json', encoding="utf8").read()
+intents = json.loads(data_file)
+
+for intent in intents['intents']:
+    patterns = json.dumps(intent['patterns'])
+    responses = json.dumps(intent['responses'])
+    cursor.execute(f'''INSERT INTO intents(tag, patterns, responses) VALUES ('{intent['tag']}',  ARRAY {patterns.replace("'", "`").replace('"', "'")},  ARRAY {responses.replace("'", "`").replace('"', "'")})''')
+
+# tag="'greetingMISC'"
+# cursor.execute(f'''SELECT responses FROM intents WHERE tag ={tag}''')
+# rows = cursor.fetchone()
+# print(rows[0])
+conn.commit()
+print("Records inserted........")
+
+#Closing the connection
+conn.close()

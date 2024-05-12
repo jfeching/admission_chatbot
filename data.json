@@ -1,7 +1,7 @@
 {
     "intents": [
         {
-            "tag": "greeting",
+            "tag": "greetingMISC",
             "patterns": [
                 "Hi",
                 "Hello",
@@ -16,7 +16,7 @@
             "context_set": ""
         },
         {
-            "tag": "greetingMore",
+            "tag": "greetingMoreMISC",
             "patterns": [
                 "How are you",
                 "Whats up"
@@ -28,7 +28,7 @@
             "context_set": ""
         },
         {
-            "tag": "goodbye",
+            "tag": "goodbyeMISC",
             "patterns": [
                 "cya",
                 "Bye",
@@ -45,7 +45,7 @@
             "context_set": ""
         },
         {
-            "tag": "acknowledgement",
+            "tag": "acknowledgementMISC",
             "patterns": [
                 "i see",
                 "i understand",
@@ -59,7 +59,7 @@
             "context_set": ""
         },
         {
-            "tag": "replyToThanks",
+            "tag": "replyToThanksMISC",
             "patterns": [
                 "thank you for the information",
                 "thank you",
@@ -979,7 +979,7 @@
             "context_set": ""
         },
         {
-            "tag": "incompleteStmtCatcher",
+            "tag": "incompleteStmtCatcherMISC",
             "patterns": [
                 "how do i",
                 "what is",
@@ -1009,7 +1009,7 @@
             "context_set": ""
         },
         {
-            "tag": "noResponse",
+            "tag": "noResponseMISC",
             "patterns": [
                 ""
             ],

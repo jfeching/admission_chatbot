@@ -133,6 +133,19 @@ def getTags(category):
             result.append(i[1][0]) #append first pattern
     return result
 
+def getIntents():
+    #Establishing the connection
+    conn = connect_db()
+    #Creating a cursor object using the cursor() method
+    cursor = conn.cursor()
+    cursor.execute('''SELECT tag, patterns, responses FROM intents''')
+
+    rows = cursor.fetchall()
+
+    result = rows
+    conn.close()
+    return result
+
 
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_session import Session
@@ -177,9 +190,16 @@ def admin():
         return redirect("/login")
     if 'username' in session:
         username = session['username']
-        responses=getTags('')
-        responses=responses[5:len(responses)-2]
-        return render_template('admin.html', len=len(responses), intents=responses)
+        patterns=getTags('')
+
+        int_res = []
+        pat_res = []
+        intents=getIntents()
+        for i in range(0,len(intents)):
+            if "MISC" not in intents[i][0]:
+                int_res.append(intents[i])
+                pat_res.append(patterns[i])
+        return render_template('admin.html', len=len(pat_res), patterns=pat_res, intents=int_res)
 
 
 @app.route('/admin_login')
@@ -217,7 +237,7 @@ def update_response():
         return "Update FAILED"
 
     conn.close()
-    return f"Updated {oldResponse} to {newResponse} Successfully"
+    return f"Updated Successfully"
 
 @app.route("/getTag")
 def get_tags():

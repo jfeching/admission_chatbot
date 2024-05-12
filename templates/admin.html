@@ -6,15 +6,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
   
-/* Style for the container */
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-}
+
+  table {
+    width: 100%;
+    font-size:80%
+  }
+  
+  .scrollwrapper {
+    overflow: auto;
+    display:block
+  }
+
+  th:tr{ 
+    color: blue; 
+
+} 
+tr:nth-of-type(2n){ 
+    border: 1px solid black; 
+    background-color: rgba(150, 150, 150, 0.5); 
+} 
+
+td{ 
+    padding: 4px 4px; 
+    border: 1px solid black; 
+} 
 
 /* Style for the heading */
 h1 {
@@ -50,7 +68,7 @@ label {
 
 /* Style for the input field */
 input[type="list"] {
-    width: 1000px; /* Adjust the width here */
+    width: 100%; /* Adjust the width here */
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -81,51 +99,121 @@ option {
 }
 
 
+
+
 </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
-
-  <div class="container">
-    <h1>Welcome, {{ session['username'] }}</h1>
+  <h1>Welcome, {{ session['username'] }}</h1>
     <a href="{{ url_for('logout') }}">Logout</a>
+    <button onclick="openFind()" class="modal-btn" id="find-modal-btn">Find</button>
+<div class="scrollwrapper">
+  <table> 
+    <!-- Table headers -->
+        <th> 
+            <tr style="color: green; ">     
+            <td></td> 
+            <td>intent</td> 
+            <td>paterns</td> 
+            <td>responses</td> 
+    </tr> 
+        </th> 
+          
+    <!-- For loop logic of jinja template -->
+    {%for i in range(0,len)%} 
+      
+    <!-- table rows -->
+    <tr> 
+        <td>{{i}}</td> 
+        <td>{{intents[i][0]}} 
+          <button onclick="openUpdate({{[intents[i][1], intents[i][2][0]]}})"  class="updatemodal-btn">Update</button>
+        </td> 
+        <td>{{intents[i][1][0]}}</td> 
+        <td>{{intents[i][2][0]}}</td> 
+    {%endfor%} 
+      
+    </tr> 
+      
+  </table> 
+</div>
 
-    <form id="update-form">
-      <label>Choose an intent to be updated:<br>
-        <input id="selected-intent" type="text" list="intents" style="width: 500px;"></label> 
-        <datalist id="intents" >
-          {%for i in intents%} 
-            <option value="{{i}}">
-          {%endfor%} 
-        </datalist>
-        <button onclick="fetch()" class="fetch-btn" id="fetch-btn">Fetch</button>
-        <br><br>
-
-        <label>Current response:<br></label>
-        <div id="content">
-          ...
+    <div class="w3-container">
+    
+      <div id="update-modal-container" class="w3-modal">
+        <div class="w3-modal-content w3-card-4">
+          <header class="w3-container w3-teal"> 
+            <span onclick="document.getElementById('update-modal-container').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2>Update</h2>
+          </header>
+          <div class="w3-container">
+            <form id="update-form">
+              
+                <p id="intent-to-be-updated"></p>
+        
+                <label>Current response:<br></label>
+                <div id="content-update">
+                  
+                </div>
+                <br>
+                <label>Input new response:<br>
+                <textarea id="edited-response" type="text" rows="10" cols="80"></textarea></label> 
+                <br><br>
+                <input type="submit" value="Update Response">
+            </form>
+          </div>
         </div>
-        <br>
-        <label>Input new response:<br>
-        <textarea id="edited-response" type="text" rows="10" cols="80"></textarea></label> 
-        <br><br>
-        <input type="submit" value="Update Response">
-    </form>
+      </div>
 
-  </div>
- 
+      <div id="find-modal-container" class="w3-modal">
+        <div class="w3-modal-content w3-card-4">
+          <header class="w3-container w3-teal"> 
+            <span onclick="document.getElementById('find-modal-container').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2>Find an intent to be Updated</h2>
+          </header>
+          <div class="w3-container">
+            <form id="update2-form">
+              <label>Choose an intent to be updated:<br>
+                <input id="selected-intent" type="text" list="patterns" style="width: 500px; font-weight: lighter;"></label> 
+                <datalist id="patterns" >
+                  {%for i in patterns%} 
+                    <option value="{{i}}">
+                  {%endfor%} 
+                </datalist>
+
+                <button onclick="fetch()" class="fetch-btn" id="fetch-btn">Fetch Current Response</button>
+                <br><br>
+        
+                <label>Current response:<br></label>
+                <div id="content2">
+                  ...
+                </div>
+                <br>
+                <label>Input new response:<br>
+                <textarea id="edited-response-2" type="text" rows="10" cols="80"></textarea></label> 
+                <br><br>
+                <input type="submit" value="Update Response">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
 <script>
   const updateForm = document.getElementById('update-form');
+  const updateForm2 = document.getElementById('update2-form');
   const fetchButton = document.getElementById('fetch-btn');
 
   const selected_intent = document.getElementById("selected-intent");
-
-  const content = document.getElementById("content");
+  const content_update = document.getElementById("content-update");
+  const content_find = document.getElementById("content2");
   const edited = document.getElementById("edited-response");
+  const edited2 = document.getElementById("edited-response-2");
 
   updateForm.addEventListener("submit", event => {
     event.preventDefault();
@@ -133,25 +221,59 @@ option {
     updateResponse();
   });
 
+  updateForm2.addEventListener("submit", event => {
+    event.preventDefault();
+
+    findupdateResponse();
+  });
+
   function fetch(){
+    console.log("HERE")
     event.preventDefault()
 
     $.get("/getReply", { msg: selected_intent.value}).done(function (data) {
-      content.innerHTML = data;
-      content.value=data;
+      content_find.innerHTML = data;
+      content_find.value=data;
     });
   }
 
   function updateResponse(){
     event.preventDefault()
-    console.log({ pattern: selected_intent.value, old:content.value, new:edited.value })
-    $.get("/update", { pattern: selected_intent.value, old:content.value, new:edited.value }).done(function (data) {
-      //console.log(rawText);
-      //console.log(data);
-
-      console.log(data)
+    const to_be_updated = document.getElementById('intent-to-be-updated').value
+    console.log({ pattern: to_be_updated, old:content_update.value, new:edited.value })
+    $.get("/update", { pattern: to_be_updated, old:content_update.value, new:edited.value }).done(function (data) {
+      document.getElementById('update-modal-container').style.display='none';
+      console.log(data, "UPDATE")
+      alert(data);
+      document.location.reload();
 
     });
+  }
+
+  function findupdateResponse(){
+    event.preventDefault()
+    console.log({ pattern: selected_intent.value, old:content_find.value, new:edited2.value })
+    $.get("/update", { pattern: selected_intent.value, old:content_find.value, new:edited2.value }).done(function (data) {
+      //console.log(rawText);
+      console.log(data, "HAHAH")
+      document.getElementById('find-modal-container').style.display='none'
+      alert(data);
+      document.location.reload();
+      
+    });
+  }
+  function openUpdate(id) {
+    document.getElementById('update-modal-container').style.display='block'
+    document.getElementById('intent-to-be-updated').innerHTML=id[0][0]
+    document.getElementById('intent-to-be-updated').value=id[0][0]
+    let data = id[1];
+    content_update.innerHTML= data;
+    content_update.value= data;
+    console.log(data)
+  }
+
+  function openFind() {
+    document.getElementById('find-modal-container').style.display='block'
   }
 </script>
 </body>
