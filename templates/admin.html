@@ -20,6 +20,10 @@
     display:block
   }
 
+  .txt-area{
+    width: 90%; 
+    max-width: 90%;
+  }
   th:tr{ 
     color: blue; 
 
@@ -68,7 +72,7 @@ label {
 
 /* Style for the input field */
 input[type="list"] {
-    width: 100%; /* Adjust the width here */
+    width: 90%; /* Adjust the width here */
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -109,6 +113,7 @@ option {
   <h1>Welcome, {{ session['username'] }}</h1>
     <a href="{{ url_for('logout') }}">Logout</a>
     <button onclick="openFind()" class="modal-btn" id="find-modal-btn">Find</button>
+    <button onclick="openAdd()" class="modal-btn" id="add-modal-btn">Add</button>
 <div class="scrollwrapper">
   <table> 
     <!-- Table headers -->
@@ -129,6 +134,7 @@ option {
         <td>{{i}}</td> 
         <td>{{intents[i][0]}} 
           <button onclick="openUpdate({{[intents[i][1], intents[i][2][0]]}})"  class="updatemodal-btn">Update</button>
+          <button onclick="openDelete({{[intents[i][1], intents[i][2][0]]}})"  class="deletemodal-btn">Delete</button>
         </td> 
         <td>{{intents[i][1][0]}}</td> 
         <td>{{intents[i][2][0]}}</td> 
@@ -150,18 +156,42 @@ option {
           </header>
           <div class="w3-container">
             <form id="update-form">
-              
+              <label for="intent-to-be-updated">Intent to be updated:</label>
                 <p id="intent-to-be-updated"></p>
         
-                <label>Current response:<br></label>
+                <label for="content-update">Current response:</label>
                 <div id="content-update">
                   
                 </div>
                 <br>
-                <label>Input new response:<br>
-                <textarea id="edited-response" type="text" rows="10" cols="80"></textarea></label> 
+                <label for="edited-response">Input new response:</label>
+                <textarea id="edited-response" class="txt-area" type="text" rows="10"></textarea>
                 <br><br>
                 <input type="submit" value="Update Response">
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="delete-modal-container" class="w3-modal">
+        <div class="w3-modal-content w3-card-4">
+          <header class="w3-container w3-teal"> 
+            <span onclick="document.getElementById('delete-modal-container').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2>Delete</h2>
+          </header>
+          <div class="w3-container">
+            <form id="delete-form">
+              <label for="intent-to-be-deleted">Intent to be deleted:</label>
+                <p id="intent-to-be-deleted"></p>
+        
+                <label for="content-delete">Current response:</label>
+                <div id="content-delete">
+                  
+                </div>
+                <br>
+              
+                <input type="submit" value="Delete Intent">
             </form>
           </div>
         </div>
@@ -176,8 +206,8 @@ option {
           </header>
           <div class="w3-container">
             <form id="update2-form">
-              <label>Choose an intent to be updated:<br>
-                <input id="selected-intent" type="text" list="patterns" style="width: 500px; font-weight: lighter;"></label> 
+              <label for="selected-intent">Choose an intent to be updated:</label>
+                <input id="selected-intent" type="text" list="patterns" style="width: 90%;">
                 <datalist id="patterns" >
                   {%for i in patterns%} 
                     <option value="{{i}}">
@@ -192,10 +222,35 @@ option {
                   ...
                 </div>
                 <br>
-                <label>Input new response:<br>
-                <textarea id="edited-response-2" type="text" rows="10" cols="80"></textarea></label> 
+                <label for="edited-response-2">Input new response:</label> <br>
+                <textarea id="edited-response-2" class="txt-area" type="text" rows="10"></textarea>
                 <br><br>
                 <input type="submit" value="Update Response">
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="add-modal-container" class="w3-modal">
+        <div class="w3-modal-content w3-card-4">
+          <header class="w3-container w3-teal"> 
+            <span onclick="document.getElementById('add-modal-container').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2>Add</h2>
+          </header>
+          <div class="w3-container">
+            <form id="add-form">
+              <label for="tag-add-intent">Tag</label>
+              <input type="text" name="tag" placeholder="Tag" id="tag-add-intent" autocompete="off"><br><br>
+
+              <label for="pattern-add-intent">Pattern/Question</label>
+                <input type="text" name="pattern" placeholder="Pattern/Question" id="pattern-add-intent" autocompete="off"><br><br>
+                
+                <label for="response-add-intent">Input response:</label>
+                <textarea id="response-add-intent" class="txt-area" type="text" rows="10"></textarea>
+                <br><br>
+                <input type="submit" value="Add Intent">
             </form>
           </div>
         </div>
@@ -207,25 +262,68 @@ option {
 <script>
   const updateForm = document.getElementById('update-form');
   const updateForm2 = document.getElementById('update2-form');
+  const addForm = document.getElementById('add-form');
+  const deleteForm = document.getElementById('delete-form');
   const fetchButton = document.getElementById('fetch-btn');
 
   const selected_intent = document.getElementById("selected-intent");
   const content_update = document.getElementById("content-update");
+  const content_delete = document.getElementById("content-delete");
   const content_find = document.getElementById("content2");
   const edited = document.getElementById("edited-response");
   const edited2 = document.getElementById("edited-response-2");
 
   updateForm.addEventListener("submit", event => {
     event.preventDefault();
-
-    updateResponse();
+    if(edited.value){
+      if (confirm("Are you sure you want to update?") == true) {
+        updateResponse();
+      }
+    }else{
+      alert("Please enter the new response on the textbox")
+    }
+    
   });
 
   updateForm2.addEventListener("submit", event => {
     event.preventDefault();
+    if(edited2.value){
+      if (confirm("Are you sure you want to update?") == true) {
+        findupdateResponse();
+      }
+    }else{
+      alert("Please enter the new response on the textbox")
+    }
 
-    findupdateResponse();
+    
   });
+
+  deleteForm.addEventListener("submit", event => {
+    event.preventDefault();
+      if (confirm("Are you sure you want to delete?") == true) {
+        deleteIntent(document.getElementById("intent-to-be-deleted").value);
+      }
+
+    
+  });
+
+  addForm.addEventListener("submit", event => {
+    event.preventDefault();
+    const tag = document.getElementById("tag-add-intent");
+    const pattern = document.getElementById("pattern-add-intent");
+    const response = document.getElementById("response-add-intent");
+
+    if(tag.value && pattern.value && response.value){
+      if (confirm("Are you sure you want to add this intent?") == true) {
+        addIntent(tag.value, pattern.value, response.value);
+      }
+    }else{
+      alert("Please enter the detail on the fields")
+    }
+
+    
+  });
+
 
   function fetch(){
     console.log("HERE")
@@ -251,17 +349,45 @@ option {
   }
 
   function findupdateResponse(){
-    event.preventDefault()
+    event.preventDefault(new_val)
     console.log({ pattern: selected_intent.value, old:content_find.value, new:edited2.value })
     $.get("/update", { pattern: selected_intent.value, old:content_find.value, new:edited2.value }).done(function (data) {
       //console.log(rawText);
-      console.log(data, "HAHAH")
+
       document.getElementById('find-modal-container').style.display='none'
       alert(data);
       document.location.reload();
       
     });
   }
+
+
+  function addIntent(tagA, patternA, responseA){
+    event.preventDefault()
+    console.log({ tag: tagA, pattern:patternA, response:responseA })
+    $.get("/add", { tag: tagA, pattern:patternA, response:responseA }).done(function (data) {
+      document.getElementById('add-modal-container').style.display='none';
+      console.log(data, "ADD")
+      alert(data);
+      document.location.reload();
+
+    });
+  }
+  
+  function deleteIntent(patternD){
+    event.preventDefault()
+    console.log({ pattern: patternD})
+    $.get("/delete", { pattern: patternD}).done(function (data) {
+      document.getElementById('delete-modal-container').style.display='none';
+      console.log(data, "Delete")
+      alert(data);
+      document.location.reload();
+
+
+    });
+  }
+
+
   function openUpdate(id) {
     document.getElementById('update-modal-container').style.display='block'
     document.getElementById('intent-to-be-updated').innerHTML=id[0][0]
@@ -272,8 +398,22 @@ option {
     console.log(data)
   }
 
+  function openDelete(id) {
+    document.getElementById('delete-modal-container').style.display='block'
+    document.getElementById('intent-to-be-deleted').innerHTML=id[0][0]
+    document.getElementById('intent-to-be-deleted').value=id[0][0]
+    let data = id[1];
+    content_delete.innerHTML= data;
+    content_delete.value= data;
+    console.log(data)
+  }
+
   function openFind() {
     document.getElementById('find-modal-container').style.display='block'
+  }
+
+  function openAdd() {
+    document.getElementById('add-modal-container').style.display='block'
   }
 </script>
 </body>

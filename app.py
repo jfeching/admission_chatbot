@@ -224,7 +224,7 @@ def update_response():
 
     rows = cursor.fetchone()
 
-    print(rows)
+    # print(rows)
     if pattern in rows[1]: #check if cat is in tag
         for count, i in enumerate(rows[2]):
             if oldResponse == i:
@@ -238,6 +238,34 @@ def update_response():
 
     conn.close()
     return f"Updated Successfully"
+
+@app.route("/add")
+def add_intent():
+    tag = request.args.get('tag')
+    patterns = request.args.get('pattern')
+    responses = request.args.get('response')
+
+    conn = connect_db()
+    #Creating a cursor object using the cursor() method
+    cursor = conn.cursor()
+    
+    cursor.execute(f'''INSERT INTO intents(tag, patterns, responses) VALUES ('{tag}',  ARRAY['{patterns}'],  ARRAY['{responses}'])''')
+    conn.commit()
+    conn.close()
+    return f"Added Successfully. Do not forget to retrain the model."
+
+@app.route("/delete")
+def delete_intent():
+    patterns = request.args.get('pattern')
+
+    conn = connect_db()
+    #Creating a cursor object using the cursor() method
+    cursor = conn.cursor()
+    
+    cursor.execute(f'''DELETE FROM intents WHERE '{patterns}' = ANY(patterns)''')
+    conn.commit()
+    conn.close()
+    return f"Deleted Successfully"
 
 @app.route("/getTag")
 def get_tags():
