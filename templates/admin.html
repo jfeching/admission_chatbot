@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ACE Support Bot</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+  
+
+  table {
+    width: 100%;
+    font-size:80%
+  }
+  
+  .scrollwrapper {
+    overflow: auto;
+    display:block
+  }
+
+  .txt-area{
+    width: 90%; 
+    max-width: 90%;
+  }
+  th:tr{ 
+    color: blue; 
+
+} 
+tr:nth-of-type(2n){ 
+    border: 1px solid black; 
+    background-color: rgba(150, 150, 150, 0.5); 
+} 
+
+td{ 
+    padding: 4px 4px; 
+    border: 1px solid black; 
+} 
+
+/* Style for the heading */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Style for the logout link */
+a {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #007bff;
+    border-bottom: 1px solid #007bff;
+}
+
+a:hover {
+    color: #0056b3;
+    border-bottom-color: #0056b3;
+}
+
+/* Style for the form */
+form {
+    margin-top: 20px;
+}
+
+/* Style for the label */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Style for the input field */
+input[type="list"] {
+    width: 90%; /* Adjust the width here */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+/* Style for the submit button */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+/* Style for the options in the dropdown list */
+option {
+    padding: 5px;
+}
+
+
+
+
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <h1>Welcome, {{ session['username'] }}</h1>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    <button onclick="openFind()" class="modal-btn" id="find-modal-btn">Find</button>
+    <button onclick="openAdd()" class="modal-btn" id="add-modal-btn">Add</button>
+<div class="scrollwrapper">
+  <table> 
+    <!-- Table headers -->
+        <th> 
+            <tr style="color: green; ">     
+            <td></td> 
+            <td>intent</td> 
+            <td>paterns</td> 
+            <td>responses</td> 
+    </tr> 
+        </th> 
+          
+    <!-- For loop logic of jinja template -->
+    {%for i in range(0,len)%} 
+      
+    <!-- table rows -->
+    <tr> 
+        <td>{{i}}</td> 
+        <td>{{intents[i][0]}} 
+          <button onclick="openUpdate({{[intents[i][1], intents[i][2][0]]}})"  class="updatemodal-btn">Update</button>
+          <button onclick="openDelete({{[intents[i][1], intents[i][2][0]]}})"  class="deletemodal-btn">Delete</button>
+        </td> 
+        <td>{{intents[i][1][0]}}</td> 
+        <td>{{intents[i][2][0]}}</td> 
+    {%endfor%} 
+      
+    </tr> 
+      
+  </table> 
+</div>
+
+    <div class="w3-container">
+    
+      <div id="update-modal-container" class="w3-modal">
+        <div class="w3-modal-content w3-card-4">
+          <header class="w3-container w3-teal"> 
+            <span onclick="document.getElementById('update-modal-container').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2>Update</h2>
+          </header>
+          <div class="w3-container">
+            <form id="update-form">
+              <label for="intent-to-be-updated">Intent to be updated:</label>
+                <p id="intent-to-be-updated"></p>
+        
+                <label for="content-update">Current response:</label>
+                <div id="content-update">
+                  
+                </div>
+                <br>
+                <label for="edited-response">Input new response:</label>
+                <textarea id="edited-response" class="txt-area" type="text" rows="10"></textarea>
+                <br><br>
+                <input type="submit" value="Update Response">
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="delete-modal-container" class="w3-modal">
+        <div class="w3-modal-content w3-card-4">
+          <header class="w3-container w3-teal"> 
+            <span onclick="document.getElementById('delete-modal-container').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2>Delete</h2>
+          </header>
+          <div class="w3-container">
+            <form id="delete-form">
+              <label for="intent-to-be-deleted">Intent to be deleted:</label>
+                <p id="intent-to-be-deleted"></p>
+        
+                <label for="content-delete">Current response:</label>
+                <div id="content-delete">
+                  
+                </div>
+                <br>
+              
+                <input type="submit" value="Delete Intent">
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="find-modal-container" class="w3-modal">
+        <div class="w3-modal-content w3-card-4">
+          <header class="w3-container w3-teal"> 
+            <span onclick="document.getElementById('find-modal-container').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2>Find an intent to be Updated</h2>
+          </header>
+          <div class="w3-container">
+            <form id="update2-form">
+              <label for="selected-intent">Choose an intent to be updated:</label>
+                <input id="selected-intent" type="text" list="patterns" style="width: 90%;">
+                <datalist id="patterns" >
+                  {%for i in patterns%} 
+                    <option value="{{i}}">
+                  {%endfor%} 
+                </datalist>
+
+                <button onclick="fetch()" class="fetch-btn" id="fetch-btn">Fetch Current Response</button>
+                <br><br>
+        
+                <label>Current response:<br></label>
+                <div id="content2">
+                  ...
+                </div>
+                <br>
+                <label for="edited-response-2">Input new response:</label> <br>
+                <textarea id="edited-response-2" class="txt-area" type="text" rows="10"></textarea>
+                <br><br>
+                <input type="submit" value="Update Response">
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="add-modal-container" class="w3-modal">
+        <div class="w3-modal-content w3-card-4">
+          <header class="w3-container w3-teal"> 
+            <span onclick="document.getElementById('add-modal-container').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2>Add</h2>
+          </header>
+          <div class="w3-container">
+            <form id="add-form">
+              <label for="tag-add-intent">Tag</label>
+              <input type="text" name="tag" placeholder="Tag" id="tag-add-intent" autocompete="off"><br><br>
+
+              <label for="pattern-add-intent">Pattern/Question</label>
+                <input type="text" name="pattern" placeholder="Pattern/Question" id="pattern-add-intent" autocompete="off"><br><br>
+                
+                <label for="response-add-intent">Input response:</label>
+                <textarea id="response-add-intent" class="txt-area" type="text" rows="10"></textarea>
+                <br><br>
+                <input type="submit" value="Add Intent">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+<script>
+  const updateForm = document.getElementById('update-form');
+  const updateForm2 = document.getElementById('update2-form');
+  const addForm = document.getElementById('add-form');
+  const deleteForm = document.getElementById('delete-form');
+  const fetchButton = document.getElementById('fetch-btn');
+
+  const selected_intent = document.getElementById("selected-intent");
+  const content_update = document.getElementById("content-update");
+  const content_delete = document.getElementById("content-delete");
+  const content_find = document.getElementById("content2");
+  const edited = document.getElementById("edited-response");
+  const edited2 = document.getElementById("edited-response-2");
+
+  updateForm.addEventListener("submit", event => {
+    event.preventDefault();
+    if(edited.value){
+      if (confirm("Are you sure you want to update?") == true) {
+        updateResponse();
+      }
+    }else{
+      alert("Please enter the new response on the textbox")
+    }
+    
+  });
+
+  updateForm2.addEventListener("submit", event => {
+    event.preventDefault();
+    if(edited2.value){
+      if (confirm("Are you sure you want to update?") == true) {
+        findupdateResponse();
+      }
+    }else{
+      alert("Please enter the new response on the textbox")
+    }
+
+    
+  });
+
+  deleteForm.addEventListener("submit", event => {
+    event.preventDefault();
+      if (confirm("Are you sure you want to delete?") == true) {
+        deleteIntent(document.getElementById("intent-to-be-deleted").value);
+      }
+
+    
+  });
+
+  addForm.addEventListener("submit", event => {
+    event.preventDefault();
+    const tag = document.getElementById("tag-add-intent");
+    const pattern = document.getElementById("pattern-add-intent");
+    const response = document.getElementById("response-add-intent");
+
+    if(tag.value && pattern.value && response.value){
+      if (confirm("Are you sure you want to add this intent?") == true) {
+        addIntent(tag.value, pattern.value, response.value);
+      }
+    }else{
+      alert("Please enter the detail on the fields")
+    }
+
+    
+  });
+
+
+  function fetch(){
+    console.log("HERE")
+    event.preventDefault()
+
+    $.get("/getReply", { msg: selected_intent.value}).done(function (data) {
+      content_find.innerHTML = data;
+      content_find.value=data;
+    });
+  }
+
+  function updateResponse(){
+    event.preventDefault()
+    const to_be_updated = document.getElementById('intent-to-be-updated').value
+    console.log({ pattern: to_be_updated, old:content_update.value, new:edited.value })
+    $.get("/update", { pattern: to_be_updated, old:content_update.value, new:edited.value }).done(function (data) {
+      document.getElementById('update-modal-container').style.display='none';
+      console.log(data, "UPDATE")
+      alert(data);
+      document.location.reload();
+
+    });
+  }
+
+  function findupdateResponse(){
+    event.preventDefault(new_val)
+    console.log({ pattern: selected_intent.value, old:content_find.value, new:edited2.value })
+    $.get("/update", { pattern: selected_intent.value, old:content_find.value, new:edited2.value }).done(function (data) {
+      //console.log(rawText);
+
+      document.getElementById('find-modal-container').style.display='none'
+      alert(data);
+      document.location.reload();
+      
+    });
+  }
+
+
+  function addIntent(tagA, patternA, responseA){
+    event.preventDefault()
+    console.log({ tag: tagA, pattern:patternA, response:responseA })
+    $.get("/add", { tag: tagA, pattern:patternA, response:responseA }).done(function (data) {
+      document.getElementById('add-modal-container').style.display='none';
+      console.log(data, "ADD")
+      alert(data);
+      document.location.reload();
+
+    });
+  }
+  
+  function deleteIntent(patternD){
+    event.preventDefault()
+    console.log({ pattern: patternD})
+    $.get("/delete", { pattern: patternD}).done(function (data) {
+      document.getElementById('delete-modal-container').style.display='none';
+      console.log(data, "Delete")
+      alert(data);
+      document.location.reload();
+
+
+    });
+  }
+
+
+  function openUpdate(id) {
+    document.getElementById('update-modal-container').style.display='block'
+    document.getElementById('intent-to-be-updated').innerHTML=id[0][0]
+    document.getElementById('intent-to-be-updated').value=id[0][0]
+    let data = id[1];
+    content_update.innerHTML= data;
+    content_update.value= data;
+    console.log(data)
+  }
+
+  function openDelete(id) {
+    document.getElementById('delete-modal-container').style.display='block'
+    document.getElementById('intent-to-be-deleted').innerHTML=id[0][0]
+    document.getElementById('intent-to-be-deleted').value=id[0][0]
+    let data = id[1];
+    content_delete.innerHTML= data;
+    content_delete.value= data;
+    console.log(data)
+  }
+
+  function openFind() {
+    document.getElementById('find-modal-container').style.display='block'
+  }
+
+  function openAdd() {
+    document.getElementById('add-modal-container').style.display='block'
+  }
+</script>
+</body>
+</html>
+

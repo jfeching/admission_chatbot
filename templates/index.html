@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
@@ -29,46 +30,53 @@
     <button class="wc-menu__content-btn" id="abt-cb"><!----><span>About Chatbot</span></button>
   </div>
   <div class="column right">
-
     <section class="msger">
-        <header class="msger-header">
-          <div class="msger-header-title">
-            <i class="fas fa-robot" style="color: #7b1113;"></i> ACE <i class="fas fa-robot" style="color: #7b1113;"></i>
+      <header class="msger-header">
+        <div class="msger-header-title">
+        </div>
+      </header>
+      <main class="msger-chat">
+        <div class="msg left-msg">
+          <div class="msg-img" style="background-image: url('/static/bot.png')"></div>
+    
+          <div class="msg-bubble">
+            <div class="msg-info">
+              <div class="msg-info-name">Ace Chatbot</div>
+            </div>
+    
+            <div class="msg-text">
+              Hello. I am Ace. I can answer questions regarding the UPCAT and some questions related to Admissions in UPLB.
+              <br>You can try clicking the buttons on the left related to your question, or enter your question directly. Hope I can help.
+            </div>
+            
           </div>
-        </header>
+        </div>
+        <div class="msg left-msg">
+          <div class="msg-img" style="background-image: url('/static/bot.png')"></div>
     
-        <main class="msger-chat">
-          <div class="msg left-msg">
-            <div class="msg-img" style="background-image: url('/static/bot.png')"></div>
+          <div class="msg-bubble">
+            <div class="msg-info">
+              <div class="msg-info-name">Ace Chatbot</div>
+            </div>
     
-            <div class="msg-bubble">
-              <div class="msg-info">
-                <div class="msg-info-name">Ace Chatbot</div>
-                <div class="msg-info-time">12:45</div>
-              </div>
-    
-              <div class="msg-text">
-                Hello. I am Ace. I can answer questions regarding the UPCAT and some questions related to Admissions in UPLB.
-                <br>You can try clicking the buttons on the left related to your question, or enter your question directly. Hope I can help.
-              </div>
+            <div class="msg-text">
+              REMINDER: This application is still under development. Information pertaining to UPCAT is not official and may be outdated. For specific concerns about current application, you may contact the respective offices directly.
             </div>
           </div>
+        </div>
     
-        </main>
+      </main>
     
-        <form class="msger-inputarea">
-          <input type="text" class="msger-input" id="textInput" placeholder="Enter your message..." autocomplete="off">
-          <button type="submit" class="msger-send-btn" id="send-btn">Send</button>
-          <div id="loading-indicator">
-            <i class="fa fa-spinner fa-spin" style="color: #7b1113;font-size:42px"></i>
-          </div>
-        </form>
-      </section>
-      <!-- partial -->
-    
+      <form class="msger-inputarea">
+        <input type="text" class="msger-input" id="autoComplete" placeholder="Enter your message..." autocomplete="off">
+        <button type="submit" class="msger-send-btn" id="send-btn">Send</button>
+        <div id="loading-indicator">
+          <i class="fa fa-spinner fa-spin" style="color: #7b1113;font-size:42px"></i>
+        </div>
+      </form>
+    </section>
   </div>
 </div>
-
 
 <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
 <script>
@@ -110,6 +118,24 @@
     botResponse(msgText);
   });
 
+  msgerInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      const msgText = msgerInput.value;
+      if (!msgText) return;
+
+      // Hide the user input field and display the loading indicator
+      sendButton.disabled = true;
+      loadingIndicator.style.display = 'block';
+      sendButton.style.display = 'none';
+  
+      appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+      msgerInput.value = "";
+      botResponse(msgText);
+        
+    }
+  });
+
   genInfo.addEventListener(
     'click',
     async () => {
@@ -126,8 +152,13 @@
     async () => {
       await $.get("/getTag", { cat: "UPCAT" }).done(function (data) {
         //console.log(rawText);
-        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
-        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about UPCAT", shuffledArray.slice(0,9))  
+        if (data.length>10){
+          const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+          appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about UPCAT", shuffledArray.slice(0,9))  
+        }else{
+          appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about UPCAT", data)  
+        }
+
       });
     },
     false
@@ -137,9 +168,14 @@ abtPostUPCAT.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "POSTEXAM" }).done(function (data) {
-      appendButton(BOT_NAME, BOT_IMG, "left", "Here are some commonly asked questions after taking the UPCAT", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ after taking the UPCAT", shuffledArray.slice(0,9))  
+      } else{
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are the commonly asked questions after taking the UPCAT", data)  
+
+      }
     });
-    
   },
   false
 );
@@ -148,8 +184,12 @@ abttransfer.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "Transfer" }).done(function (data) {
-      //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About Transferees", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about Transferees", shuffledArray.slice(0,9))  
+      } else{     
+         appendButton(BOT_NAME, BOT_IMG, "left", "About Transferees", data)  
+      }
     });
     
   },
@@ -160,8 +200,12 @@ abtFS.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "ForeignStudent" }).done(function (data) {
-      //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About the additional requirements for Foreign students", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some commonly asked questions about Foreign Students", shuffledArray.slice(0,9))  
+      } else{     
+        appendButton(BOT_NAME, BOT_IMG, "left", "About the additional requirements for Foreign students", data)  
+      }
     });
     
   },
@@ -172,8 +216,12 @@ abtND.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "NonDegree" }).done(function (data) {
-      //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About Non-degree Programs", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about Non-degree Programs", shuffledArray.slice(0,9))  
+      } else{     
+            appendButton(BOT_NAME, BOT_IMG, "left", "About Non-degree Programs", data)  
+      }
     });
     
   },
@@ -184,8 +232,12 @@ abtNFYA.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "FirstYearAdmission" }).done(function (data) {
-      //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About New First Year Admission", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about New First Year Admission", shuffledArray.slice(0,9))  
+      } else{     
+            appendButton(BOT_NAME, BOT_IMG, "left", "About New First Year Admission", data)  
+      }
     });
     
   },
@@ -196,8 +248,12 @@ abtNFYA.addEventListener(
     'click',
     async () => {
       await $.get("/getTag", { cat: "SecondDegree" }).done(function (data) {
-        //console.log(rawText);
-        appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data)  
+        if (data.length>10){
+          const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+          appendButton(BOT_NAME, BOT_IMG, "left", "Here are some FAQ about Second Degree", shuffledArray.slice(0,9))  
+        } else{     
+          appendButton(BOT_NAME, BOT_IMG, "left", "About Second Degree", data) 
+        }         
       });
       
     },
@@ -208,8 +264,12 @@ abtSS.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "SpecialStudent" }).done(function (data) {
-      //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About Special Student", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some commonly asked questions about Special Student", shuffledArray.slice(0,9))  
+      } else{     
+        appendButton(BOT_NAME, BOT_IMG, "left", "About Special Student", data)  
+      }
     });
     
   },
@@ -220,15 +280,19 @@ abtchatbot.addEventListener(
   'click',
   async () => {
     await $.get("/getTag", { cat: "CHATBOT" }).done(function (data) {
-      //console.log(rawText);
-      appendButton(BOT_NAME, BOT_IMG, "left", "About Chatbot", data)  
+      if (data.length>10){
+        const shuffledArray = data.sort((a, b) => 0.5 - Math.random());
+        appendButton(BOT_NAME, BOT_IMG, "left", "Here are some commonly asked questions about the Chatbot", shuffledArray.slice(0,9))  
+      } else{     
+        appendButton(BOT_NAME, BOT_IMG, "left", "About Chatbot", data) 
+      }  
     });
   },
   false
 );
 
   function appendButton(name, img, side, text, tags) {
-    console.log(tags)
+//console.log(tags)
     let msgHTML = `
 <div class="msg ${side}-msg">
   <div class="msg-img" style="background-image: url('/static/${img}')"></div>
@@ -244,7 +308,7 @@ abtchatbot.addEventListener(
   // Loop through the array and create buttons
   for (var i = 0; i < tags.length; i++) {
     // Create a new button element
-    msgHTML+= `<button class="msg__content-btn" value="${tags[i]}" onclick="sendButtonValue(this.value)"><!----><span>${tags[i]}</span></button>
+    msgHTML+= `<button class="msg-content-btn" value="${tags[i]}" onclick="sendButtonValue(this.value)"><!----><span>${tags[i]}</span></button>
     `
   }
 
@@ -276,20 +340,32 @@ abtchatbot.addEventListener(
   }
 
   function botResponse(rawText) {
-
     // Bot Response
     $.get("/getReply", { msg: rawText }).done(function (data) {
       //console.log(rawText);
       //console.log(data);
       const msgText = formatMessage(data);
-      appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+
+      if (msgText === "ADMIN"){
+        appendMessage(BOT_NAME, BOT_IMG, "left", 'Hello Admin, <br> <a href="{{ url_for('admin_login') }}">Go to Admin Page</a>');
+        
+      } else{ 
+        appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+    }
 
       sendButton.disabled = false; // Enable the submit button
       loadingIndicator.style.display = 'none';
       sendButton.style.display = 'block';
 
     });
+  }
 
+  function loadResponses() {
+    // Bot Response
+    $.get("/getReply", { msg: "hi" }).done(function (data) {
+      console.log("LOADED");
+
+    });
   }
 
   async function fetchTag(cat) {
@@ -300,7 +376,6 @@ abtchatbot.addEventListener(
       
     });
   }
-
 
   // Utils
   function get(selector, root = document) {
@@ -321,7 +396,7 @@ abtchatbot.addEventListener(
 
   function sendButtonValue(val){
     const msgText = val;
-    console.log(val)
+    //console.log(val)
     if (!msgText) return;
 
     // Hide the user input field and display the loading indicator
@@ -341,6 +416,52 @@ abtchatbot.addEventListener(
     return `${h.slice(-2)}:${m.slice(-2)}`;
   }
 
+
+  var intents; // Variable to store the result
+
+  $(document).ready(function() {
+    $.ajax({
+        url: '/getTag',
+        type: 'GET',
+        data: {cat: ""},
+        success: function(response) {
+            // Store the response in the variable
+            intents = response.slice(5, response.length-2);
+            loadResponses();
+            const autoCompleteJS = new autoComplete({
+              placeHolder: "Enter your message...",
+              data: {
+              src:intents,
+              cache: true,
+              },
+              resultItem: {
+                  highlight: true
+              },
+              resultsList: {
+                maxResults: 10
+            },
+              events: {
+                  input: {
+                      selection: (event) => {
+                          const selection = event.detail.selection.value;
+                          autoCompleteJS.input.value = selection;
+                      },
+                      keydown: (event) => {
+                        if (event.key === 'Enter') {
+                          autoCompleteJS.close();
+                        }
+                      }
+                  }
+              }
+          });
+
+        },
+        error: function(xhr, status, error) {
+            // Handle errors
+            console.error('Error:', error);
+        }
+    });
+});
 </script>
 </body>
 </html>
