@@ -349,7 +349,7 @@ option {
   }
 
   function findupdateResponse(){
-    event.preventDefault(new_val)
+    event.preventDefault()
     console.log({ pattern: selected_intent.value, old:content_find.value, new:edited2.value })
     $.get("/update", { pattern: selected_intent.value, old:content_find.value, new:edited2.value }).done(function (data) {
       //console.log(rawText);
